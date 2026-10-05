@@ -1,0 +1,1015 @@
+/* =========================================
+   CANVORA CONTABILIDAD — PARTE 1
+   ========================================= */
+
+.cc-page {
+    --cc-blue: #0866ff;
+    --cc-navy: #092550;
+    --cc-text: #142947;
+    --cc-muted: #64748b;
+    --cc-background: #faf9f6;
+    --cc-border: #e5eaf2;
+
+    background: var(--cc-background);
+    color: var(--cc-text);
+    font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+    overflow: clip;
+}
+
+.cc-page,
+.cc-page *,
+.cc-page *::before,
+.cc-page *::after {
+    box-sizing: border-box;
+}
+
+.cc-page h1,
+.cc-page h2,
+.cc-page h3,
+.cc-page p,
+.cc-page figure {
+    margin: 0;
+}
+
+.cc-page img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.cc-page a {
+    text-decoration: none;
+}
+
+.cc-page svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.cc-page section {
+    scroll-margin-top: 110px;
+}
+
+.cc-page a:focus-visible,
+.cc-page summary:focus-visible {
+    outline: 3px solid var(--cc-blue);
+    outline-offset: 5px;
+}
+
+.cc-container {
+    width: min(1180px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.cc-eyebrow {
+    color: #526581;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.cc-page h2 {
+    color: var(--cc-navy);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1.3px;
+    line-height: 1.2;
+}
+
+.cc-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 48px;
+    max-width: 100%;
+    padding: 13px 23px;
+    border-radius: 999px;
+    background: var(--cc-blue);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+    box-shadow: 0 8px 22px rgb(8 102 255 / 15%);
+    transition: background .2s ease, transform .2s ease;
+}
+
+.cc-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.cc-button:hover {
+    background: #0054db;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.cc-button--white {
+    background: #fff;
+    color: var(--cc-blue);
+    box-shadow: 0 8px 22px rgb(9 37 80 / 10%);
+}
+
+.cc-button--white:hover {
+    background: #edf4ff;
+    color: #0054db;
+}
+
+/* PORTADA */
+
+.cc-hero {
+    padding: 46px 0 38px;
+    background:
+        radial-gradient(
+            ellipse at 50% 0,
+            #fff 0,
+            transparent 65%
+        ),
+        var(--cc-background);
+}
+
+.cc-hero__content {
+    max-width: 980px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.cc-hero__content > .cc-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cc-hero__content > .cc-eyebrow::before,
+.cc-hero__content > .cc-eyebrow::after {
+    width: 30px;
+    height: 1px;
+    background: var(--cc-blue);
+    content: "";
+}
+
+.cc-hero h1 {
+    margin: 17px 0 18px;
+    color: var(--cc-navy);
+    font-size: clamp(34px, 4vw, 51px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.13;
+}
+
+.cc-hero h1 span {
+    display: block;
+    color: var(--cc-blue);
+}
+
+.cc-hero__description {
+    max-width: 600px;
+    margin: 0 auto 23px !important;
+    color: #526174;
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.cc-hero__photo {
+    height: clamp(300px, 36vw, 460px);
+    margin-top: 30px !important;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #e8edf2;
+}
+
+.cc-hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+}
+
+/* ENCABEZADOS */
+
+.cc-heading {
+    max-width: 950px;
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.cc-heading h2 {
+    margin-top: 10px;
+}
+
+/* SERVICIOS */
+
+.cc-services {
+    padding: 20px 0 38px;
+}
+
+.cc-services__grid {
+    display: grid;
+    grid-template-columns: 1.25fr .85fr .85fr .85fr;
+    grid-template-areas:
+        "ruc sunat monthly monthly"
+        "ruc tax payroll advice";
+    grid-template-rows: minmax(225px, auto) minmax(225px, auto);
+    gap: 18px;
+}
+
+.cc-service {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgb(9 37 80 / 4%);
+    border-radius: 22px;
+    background: #fff;
+    isolation: isolate;
+    box-shadow: 0 5px 20px rgb(9 37 80 / 3%);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.cc-service:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgb(9 37 80 / 9%);
+}
+
+.cc-service--ruc {
+    grid-area: ruc;
+    background: #e4efff;
+}
+
+.cc-service--sunat {
+    grid-area: sunat;
+}
+
+.cc-service--monthly {
+    grid-area: monthly;
+    background: var(--cc-navy);
+}
+
+.cc-service--tax {
+    grid-area: tax;
+}
+
+.cc-service--payroll {
+    grid-area: payroll;
+}
+
+.cc-service--advice {
+    grid-area: advice;
+}
+
+.cc-service > .cc-service__photo {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cc-service--ruc > .cc-service__photo {
+    object-position: center bottom;
+}
+
+.cc-service--ruc::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        #e4efff 0%,
+        rgb(228 239 255 / 98%) 35%,
+        rgb(228 239 255 / 75%) 49%,
+        rgb(228 239 255 / 8%) 75%,
+        transparent 100%
+    );
+    content: "";
+}
+
+.cc-service--monthly > .cc-service__photo {
+    object-position: center;
+}
+
+.cc-service--monthly::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        #092550 0%,
+        rgb(9 37 80 / 95%) 40%,
+        rgb(9 37 80 / 68%) 65%,
+        rgb(9 37 80 / 20%) 100%
+    );
+    content: "";
+}
+
+.cc-service__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    padding: 25px;
+}
+
+.cc-service__icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 15px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e7f0ff;
+    color: var(--cc-blue);
+}
+
+.cc-service__icon svg {
+    width: 23px;
+    height: 23px;
+}
+
+.cc-service h3 {
+    margin-bottom: 10px;
+    color: var(--cc-navy);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -.6px;
+    line-height: 1.2;
+}
+
+.cc-service p {
+    margin-bottom: 18px;
+    color: #596b83;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.cc-service__link {
+    display: grid;
+    width: 35px;
+    height: 35px;
+    margin-top: auto;
+    place-items: center;
+    border: 1px solid #b5d0ff;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 70%);
+    color: var(--cc-blue);
+    transition: background .2s ease, color .2s ease;
+}
+
+.cc-service__link svg {
+    width: 19px;
+    height: 19px;
+}
+
+.cc-service__link:hover {
+    background: var(--cc-blue);
+    color: #fff;
+}
+
+.cc-service--ruc .cc-service__content {
+    height: auto;
+    max-width: 300px;
+    padding: 28px;
+}
+
+.cc-service--ruc .cc-service__icon {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 22px;
+    background: var(--cc-blue);
+    color: #fff;
+}
+
+.cc-service--ruc h3 {
+    max-width: 220px;
+    font-size: 31px;
+    letter-spacing: -1px;
+}
+
+.cc-service--ruc p {
+    font-size: 13px;
+}
+
+.cc-service--monthly .cc-service__content {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-content: start;
+    column-gap: 18px;
+    max-width: 360px;
+}
+
+.cc-service--monthly .cc-service__icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    background: var(--cc-blue);
+    color: #fff;
+}
+
+.cc-service--monthly h3,
+.cc-service--monthly p {
+    grid-column: 2;
+    color: #fff;
+}
+
+.cc-service--monthly h3 {
+    font-size: 26px;
+}
+
+.cc-service--monthly p {
+    color: #d4e2f7;
+    font-size: 13px;
+}
+
+.cc-service--monthly .cc-service__link {
+    grid-column: 1;
+    margin-top: 0;
+    border-color: #a4bbda;
+    background: transparent;
+    color: #fff;
+}
+
+.cc-service--monthly .cc-service__link:hover {
+    background: var(--cc-blue);
+}
+
+/* =========================================
+   CANVORA CONTABILIDAD — PARTE 2
+   ========================================= */
+
+/* PROCESO */
+
+.cc-process {
+    padding: 0 0 35px;
+}
+
+.cc-process__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 42px;
+}
+
+.cc-process__photo {
+    height: 350px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #e8edf2;
+}
+
+.cc-process__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 40% center;
+}
+
+.cc-process__content {
+    padding-block: 12px;
+}
+
+.cc-process__content h2 {
+    margin: 9px 0 25px;
+    font-size: clamp(26px, 2.6vw, 34px);
+}
+
+.cc-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cc-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 17px;
+    padding-bottom: 24px;
+}
+
+.cc-step:last-child {
+    padding-bottom: 0;
+}
+
+.cc-step:not(:last-child)::before {
+    position: absolute;
+    top: 42px;
+    bottom: 0;
+    left: 20px;
+    width: 1px;
+    background: #ccddf6;
+    content: "";
+}
+
+.cc-step__number {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--cc-blue);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.cc-step h3 {
+    margin: 2px 0 5px;
+    color: var(--cc-navy);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.cc-step p {
+    color: var(--cc-muted);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+/* PREGUNTAS FRECUENTES */
+
+.cc-faq {
+    padding: 0 0 30px;
+}
+
+.cc-faq__panel {
+    padding: 30px 32px;
+    border: 1px solid rgb(9 37 80 / 3%);
+    border-radius: 23px;
+    background: #fff;
+    box-shadow: 0 7px 25px rgb(9 37 80 / 3%);
+}
+
+.cc-faq .cc-heading {
+    margin-bottom: 20px;
+}
+
+.cc-faq__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0 35px;
+}
+
+.cc-faq__item {
+    min-width: 0;
+    border-bottom: 1px solid var(--cc-border);
+}
+
+.cc-faq__item summary {
+    position: relative;
+    padding: 16px 29px 16px 0;
+    color: var(--cc-text);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+    list-style: none;
+    cursor: pointer;
+}
+
+.cc-faq__item summary::-webkit-details-marker {
+    display: none;
+}
+
+.cc-faq__item summary::after {
+    position: absolute;
+    top: 15px;
+    right: 4px;
+    color: var(--cc-blue);
+    font-size: 19px;
+    line-height: 1;
+    content: "+";
+}
+
+.cc-faq__item[open] summary::after {
+    content: "−";
+}
+
+.cc-faq__item > p {
+    padding: 0 24px 17px 0;
+    color: var(--cc-muted);
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+/* CONTACTO */
+
+.cc-contact {
+    padding: 0 0 35px;
+}
+
+.cc-contact__panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 35px;
+    min-height: 185px;
+    padding: 34px 38px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: var(--cc-blue);
+    isolation: isolate;
+}
+
+.cc-contact__panel > .cc-contact__background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.cc-contact__panel::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgb(8 102 255 / 98%) 0%,
+        rgb(8 102 255 / 92%) 45%,
+        rgb(8 102 255 / 55%) 75%,
+        rgb(9 37 80 / 45%) 100%
+    );
+    content: "";
+}
+
+.cc-contact__content .cc-eyebrow {
+    color: #e3eeff;
+}
+
+.cc-contact__content h2 {
+    margin: 9px 0 10px;
+    color: #fff;
+    font-size: clamp(28px, 3vw, 38px);
+}
+
+.cc-contact__content > p:not(.cc-eyebrow) {
+    max-width: 520px;
+    color: #edf4ff;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+    .cc-services__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-areas:
+            "ruc monthly monthly"
+            "ruc sunat tax"
+            "payroll advice advice";
+        grid-template-rows: repeat(3, minmax(210px, auto));
+    }
+
+    .cc-service__content {
+        padding: 22px;
+    }
+
+    .cc-service--ruc .cc-service__content {
+        padding: 24px;
+    }
+
+    .cc-service--ruc h3 {
+        font-size: 28px;
+    }
+
+    .cc-process__grid {
+        gap: 28px;
+    }
+
+    .cc-process__photo {
+        height: 370px;
+    }
+
+    .cc-contact__panel {
+        gap: 25px;
+        padding: 30px;
+    }
+
+    .cc-contact__panel > .cc-button {
+        max-width: 270px;
+    }
+}
+
+/* TABLET PEQUEÑA Y CELULAR */
+
+@media (max-width: 767px) {
+    .cc-container {
+        width: calc(100% - 36px);
+    }
+
+    .cc-hero {
+        padding-top: 30px;
+        padding-bottom: 25px;
+    }
+
+    .cc-hero h1 {
+        font-size: clamp(32px, 5.7vw, 43px);
+        letter-spacing: -1.4px;
+    }
+
+    .cc-hero__description {
+        max-width: 500px;
+        font-size: 14px;
+    }
+
+    .cc-hero__photo {
+        height: 320px;
+        margin-top: 25px !important;
+        border-radius: 18px;
+    }
+
+    .cc-services {
+        padding-top: 15px;
+    }
+
+    .cc-heading h2 {
+        font-size: 29px;
+    }
+
+    .cc-services__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "ruc monthly"
+            "ruc monthly"
+            "sunat tax"
+            "payroll advice";
+        grid-template-rows:
+            minmax(155px, auto)
+            minmax(155px, auto)
+            minmax(220px, auto)
+            minmax(220px, auto);
+        gap: 15px;
+    }
+
+    .cc-service--ruc .cc-service__content {
+        padding: 23px;
+    }
+
+    .cc-service--ruc h3 {
+        font-size: 27px;
+    }
+
+    .cc-service--monthly .cc-service__content {
+        display: flex;
+        padding: 23px;
+    }
+
+    .cc-service--monthly h3 {
+        font-size: 25px;
+    }
+
+    .cc-service--monthly .cc-service__link {
+        margin-top: auto;
+    }
+
+    .cc-service--monthly::before {
+        background: linear-gradient(
+            180deg,
+            #092550 0%,
+            rgb(9 37 80 / 95%) 45%,
+            rgb(9 37 80 / 45%) 100%
+        );
+    }
+
+    .cc-process__grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .cc-process__photo {
+        height: 340px;
+    }
+
+    .cc-process__content {
+        padding: 0 4px;
+    }
+
+    .cc-process__content h2 {
+        max-width: 500px;
+        font-size: 30px;
+    }
+
+    .cc-faq__panel {
+        padding: 25px;
+    }
+
+    .cc-faq__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cc-faq__item summary,
+    .cc-faq__item > p {
+        font-size: 13px;
+    }
+
+    .cc-contact__panel {
+        grid-template-columns: 1fr;
+        justify-items: start;
+        gap: 22px;
+        padding: 30px;
+    }
+
+    .cc-contact__panel > .cc-button {
+        max-width: 100%;
+    }
+
+    .cc-contact__panel::before {
+        background: linear-gradient(
+            90deg,
+            rgb(8 102 255 / 98%) 0%,
+            rgb(8 102 255 / 85%) 65%,
+            rgb(9 37 80 / 60%) 100%
+        );
+    }
+}
+
+/* CELULARES PEQUEÑOS */
+
+@media (max-width: 480px) {
+    .cc-container {
+        width: calc(100% - 32px);
+    }
+
+    .cc-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .cc-hero__content > .cc-eyebrow {
+        gap: 10px;
+    }
+
+    .cc-hero__content > .cc-eyebrow::before,
+    .cc-hero__content > .cc-eyebrow::after {
+        width: 20px;
+    }
+
+    .cc-hero h1 {
+        font-size: 32px;
+        letter-spacing: -1.3px;
+        line-height: 1.15;
+    }
+
+    .cc-button {
+        gap: 9px;
+        padding: 13px 17px;
+        font-size: 12px;
+    }
+
+    .cc-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cc-hero__photo {
+        height: 270px;
+    }
+
+    .cc-heading {
+        margin-bottom: 22px;
+    }
+
+    .cc-heading h2 {
+        font-size: 26px;
+        letter-spacing: -.9px;
+    }
+
+    .cc-services__grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "ruc"
+            "monthly"
+            "sunat"
+            "tax"
+            "payroll"
+            "advice";
+        grid-template-rows: none;
+        gap: 15px;
+    }
+
+    .cc-service {
+        min-height: 215px;
+        border-radius: 18px;
+    }
+
+    .cc-service__content {
+        padding: 24px;
+    }
+
+    .cc-service h3 {
+        font-size: 21px;
+    }
+
+    .cc-service p {
+        font-size: 13px;
+    }
+
+    .cc-service--ruc {
+        min-height: 430px;
+    }
+
+    .cc-service--ruc .cc-service__content {
+        max-width: 310px;
+        padding: 27px;
+    }
+
+    .cc-service--ruc h3 {
+        font-size: 32px;
+    }
+
+    .cc-service--ruc::before {
+        background: linear-gradient(
+            180deg,
+            #e4efff 0%,
+            rgb(228 239 255 / 97%) 30%,
+            rgb(228 239 255 / 65%) 50%,
+            transparent 80%
+        );
+    }
+
+    .cc-service--monthly {
+        min-height: 260px;
+    }
+
+    .cc-service--monthly .cc-service__content {
+        max-width: 290px;
+        padding: 25px;
+    }
+
+    .cc-service--monthly::before {
+        background: linear-gradient(
+            90deg,
+            #092550 0%,
+            rgb(9 37 80 / 94%) 45%,
+            rgb(9 37 80 / 40%) 100%
+        );
+    }
+
+    .cc-process__photo {
+        height: 280px;
+        border-radius: 18px;
+    }
+
+    .cc-process__content h2 {
+        font-size: 28px;
+    }
+
+    .cc-step {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 13px;
+    }
+
+    .cc-step__number {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .cc-step:not(:last-child)::before {
+        top: 38px;
+        left: 18px;
+    }
+
+    .cc-step h3 {
+        font-size: 14px;
+    }
+
+    .cc-faq__panel {
+        padding: 24px 20px;
+        border-radius: 18px;
+    }
+
+    .cc-contact__panel {
+        padding: 27px 22px;
+        border-radius: 18px;
+    }
+
+    .cc-contact__content h2 {
+        font-size: 29px;
+    }
+}
+
+/* MOVIMIENTO REDUCIDO */
+
+@media (prefers-reduced-motion: reduce) {
+    .cc-page *,
+    .cc-page *::before,
+    .cc-page *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,352 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* CANVORA TECH */
+
+.breadcrumb {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: #d1ddf2;
+    font-size: 12px;
+}
+
+.breadcrumb:hover {
+    color: white;
+}
+
+.tech-label {
+    display: block;
+    margin-bottom: 18px;
+    color: #91b7ff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.tech-hero .hero-inner {
+    min-height: 545px;
+}
+
+.tech-hero .hero-visual img {
+    object-position: 62% center;
+}
+
+.tech-hero h1 {
+    font-size: clamp(38px, 4vw, 58px);
+}
+
+.tech-section {
+    padding-block: 75px;
+    background: var(--bone);
+}
+
+.tech-section-white {
+    background: white;
+}
+
+.tech-section .section-description {
+    max-width: 720px;
+    margin-inline: auto;
+}
+
+.tech-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.tech-service {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border: 1px solid #e5e9f0;
+    border-radius: 17px;
+    background: white;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.tech-service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px #0617370d;
+}
+
+.tech-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 49px;
+    height: 49px;
+    margin-bottom: 23px;
+    border-radius: 13px;
+    background: #edf3ff;
+    color: var(--blue);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.tech-service h3,
+.tech-sector h3,
+.tech-step h3 {
+    margin: 0 0 14px;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -.6px;
+}
+
+.tech-service > p,
+.tech-sector p,
+.tech-step p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.tech-list {
+    flex: 1;
+    margin: 22px 0 25px;
+    padding: 0;
+    list-style: none;
+}
+
+.tech-list li {
+    position: relative;
+    margin-bottom: 11px;
+    padding-left: 19px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.tech-list li::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+}
+
+.tech-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    align-self: flex-start;
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.tech-text-link:hover {
+    text-decoration: underline;
+}
+
+.tech-text-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.tech-intro {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 38px;
+}
+
+.tech-intro .eyebrow {
+    justify-content: flex-start;
+}
+
+.tech-intro .eyebrow::before {
+    display: none;
+}
+
+.tech-intro h2 {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.tech-intro > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.tech-sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.tech-sector {
+    padding: 28px;
+    border: 1px solid #e4eaf5;
+    border-radius: 15px;
+    background: #f7faff;
+}
+
+.sector-dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 6px #e5eeff;
+}
+
+.tech-sector h3 {
+    font-size: 19px;
+}
+
+.tech-process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.tech-step {
+    min-width: 0;
+    padding-top: 24px;
+    border-top: 2px solid #dce4f2;
+}
+
+.step-number {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--blue);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.tech-step h3 {
+    font-size: 19px;
+}
+
+.tech-faq {
+    max-width: 900px;
+}
+
+.tech-faq details {
+    margin-bottom: 14px;
+    border: 1px solid #e3e8f0;
+    border-radius: 12px;
+    background: white;
+}
+
+.tech-faq summary {
+    padding: 22px;
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.tech-faq summary::marker {
+    color: var(--blue);
+}
+
+.tech-faq summary:focus-visible {
+    outline: 3px solid #75a9ff;
+    outline-offset: 3px;
+    border-radius: 12px;
+}
+
+.tech-faq details[open] {
+    background: #f7faff;
+    border-color: #b6ceff;
+}
+
+.tech-faq details p {
+    margin: 0;
+    padding: 0 22px 24px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+@media (max-width: 1100px) {
+    .tech-services-grid,
+    .tech-sectors-grid,
+    .tech-process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tech-intro {
+        gap: 35px;
+    }
+}
+
+@media (max-width: 650px) {
+    .tech-hero .hero-inner {
+        min-height: auto;
+    }
+
+    .tech-hero h1 {
+        font-size: clamp(34px, 8.8vw, 46px);
+    }
+
+    .tech-hero .hero-visual {
+        aspect-ratio: 4 / 3;
+    }
+
+    .tech-hero .hero-visual img {
+        object-position: center;
+    }
+
+    .tech-section {
+        padding-block: 48px;
+    }
+
+    .tech-services-grid,
+    .tech-sectors-grid,
+    .tech-process-grid,
+    .tech-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-intro {
+        gap: 20px;
+    }
+
+    .tech-service {
+        padding: 26px;
+    }
+
+    .tech-sector {
+        padding: 25px;
+    }
+
+    .tech-process-grid {
+        gap: 25px;
+    }
+
+    .tech-faq summary {
+        padding: 19px;
+        font-size: 15px;
+    }
+
+    .tech-faq details p {
+        padding: 0 19px 22px;
+    }
+}

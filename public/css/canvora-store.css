@@ -1,0 +1,222 @@
+/* CANVORA STORE — PARTE 1: BASE, PORTADA Y CATEGORÍAS */
+.cs-page {
+    --cs-blue: #0668ff;
+    --cs-blue-dark: #004cc6;
+    --cs-navy: #09294e;
+    --cs-text: #18324f;
+    --cs-muted: #66788e;
+    --cs-border: #e1eaf4;
+    color: var(--cs-text);
+    background: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 24px 0 42px;
+}
+.cs-page *, .cs-page *::before, .cs-page *::after { box-sizing: border-box; }
+.cs-page [hidden] { display: none !important; }
+.cs-page img { display: block; max-width: 100%; }
+.cs-page button, .cs-page input { font: inherit; }
+.cs-page button { cursor: pointer; }
+.cs-page a { text-decoration: none; }
+.cs-page h1, .cs-page h2, .cs-page h3, .cs-page p { margin: 0; }
+.cs-page :is(a, button, summary):focus-visible { outline: 3px solid #ffb84d; outline-offset: 4px; }
+.cs-shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.cs-page section[id], .cs-page aside[id] { scroll-margin-top: 100px; }
+.cs-eyebrow { color: #6384aa; font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
+.cs-button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    min-height: 44px; padding: 11px 22px; border: 1px solid var(--cs-blue);
+    border-radius: 9px; background: var(--cs-blue); color: #fff;
+    font-size: 13px; font-weight: 700; line-height: 1.3; text-align: center;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.cs-button:hover { color: #fff; background: var(--cs-blue-dark); box-shadow: 0 6px 18px rgb(6 104 255 / 18%); transform: translateY(-2px); }
+.cs-button--outline { color: var(--cs-blue); background: #fff; border-color: #b8d2ff; }
+.cs-button--outline:hover { color: var(--cs-blue); background: #eef5ff; border-color: var(--cs-blue); }
+.cs-button--white { background: #fff; border-color: #fff; color: var(--cs-navy); }
+.cs-button--white:hover { background: #edf4ff; color: var(--cs-navy); }
+.cs-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* PORTADA CON DIAGONALES */
+.cs-hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 365px; overflow: hidden; border-radius: 14px; background: #eaf4ff; }
+.cs-hero__background { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .18; }
+.cs-hero::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #ecf5ff 0%, rgb(236 245 255 / 96%) 38%, rgb(236 245 255 / 55%) 67%, transparent 100%); }
+.cs-hero__content { position: relative; z-index: 3; width: 56%; padding: 48px 44px; }
+.cs-hero h1 { margin-top: 14px; color: var(--cs-navy); font-size: clamp(28px, 3.2vw, 43px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.08; }
+.cs-hero h1 span { display: block; color: var(--cs-blue); }
+.cs-hero__content > p:not(.cs-eyebrow) { margin-top: 15px; color: #526c87; font-size: 15px; }
+.cs-hero .cs-button { margin-top: 24px; }
+.cs-hero__visual { position: absolute; inset: 0 0 0 48%; overflow: hidden; }
+.cs-hero__visual::before { content: ""; position: absolute; inset: 0; background: var(--cs-blue); clip-path: polygon(31% 0, 42% 0, 0 100%, 0 74%); }
+.cs-hero__slice { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cs-hero__slice--first { left: 0; width: 63%; background: linear-gradient(145deg, #d6edff, #7893aa); clip-path: polygon(47% 0, 100% 0, 55% 100%, 0 100%); }
+.cs-hero__slice--first img { width: 83%; margin-top: 40px; transform: translateX(12px); }
+.cs-hero__slice--second { right: 9%; width: 64%; background: linear-gradient(145deg, #edf4fa, #a8bfd1); clip-path: polygon(52% 0, 100% 0, 53% 100%, 0 100%); border-left: 5px solid #fff; }
+.cs-hero__slice--second img { width: 92%; transform: translate(30px, -15px); }
+.cs-hero__side { position: absolute; inset: 0 0 0 auto; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end; width: 39%; padding: 25px 22px; background: linear-gradient(145deg, #12467f, #072547); clip-path: polygon(100% 0, 100% 100%, 0 100%); color: #d5e4f7; font-size: 11px; line-height: 1.8; }
+
+/* TÍTULOS */
+.cs-section { margin-top: 34px; }
+.cs-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 17px; }
+.cs-page h2 { color: var(--cs-navy); font-size: 23px; font-weight: 800; letter-spacing: -.6px; line-height: 1.25; }
+.cs-heading > p { max-width: 370px; color: var(--cs-muted); font-size: 11px; text-align: right; }
+.cs-text-link { display: inline-flex; align-items: center; padding: 0; border: 0; background: none; color: var(--cs-blue); font-size: 12px; font-weight: 700; text-align: right; }
+.cs-text-link:hover { color: var(--cs-blue-dark); text-decoration: underline; }
+
+/* MOSAICO DE CATEGORÍAS */
+.cs-categories { display: grid; grid-template-columns: 1.15fr .86fr .86fr .86fr; grid-template-rows: 190px 165px; gap: 12px; }
+.cs-category { position: relative; display: block; min-width: 0; overflow: hidden; padding: 20px; border: 1px solid #e6edf5; border-radius: 11px; color: var(--cs-navy); background: #f2f6fb; text-align: left; transition: transform .2s ease, box-shadow .2s ease; }
+.cs-category:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgb(12 48 91 / 10%); }
+.cs-category__content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; width: 60%; }
+.cs-category strong { font-size: 15px; font-weight: 800; line-height: 1.25; }
+.cs-category__content > span:not(.cs-category__arrow) { margin-top: 8px; color: #6b7e94; font-size: 10px; line-height: 1.5; }
+.cs-category__arrow { display: grid; place-items: center; width: 29px; height: 29px; margin-top: 13px; border-radius: 50%; background: var(--cs-navy); color: #fff; font-size: 18px; }
+.cs-category > img { position: absolute; right: -8px; bottom: 8px; width: 64%; height: 78%; object-fit: contain; object-position: right bottom; }
+.cs-category--large { grid-column: 1 / 2; grid-row: 1 / 3; background: linear-gradient(145deg, #dcecff, #9bd0ff); border-color: #c4e2ff; }
+.cs-category--large .cs-category__content { width: 75%; }
+.cs-category--large strong { font-size: 20px; }
+.cs-category--large > img { width: 98%; height: 78%; right: -16px; bottom: 0; }
+.cs-category--food { grid-column: 2 / 4; grid-row: 1; background: #f3f7fb; }
+.cs-category--food > img { width: 64%; height: 96%; }
+.cs-category--food .cs-category__content { width: 43%; }
+.cs-category--industrial { grid-column: 4; grid-row: 1; background: linear-gradient(135deg, #0a4a95, #092947); color: #fff; border-color: transparent; }
+.cs-category--industrial .cs-category__content > span:not(.cs-category__arrow) { color: #c0d8f3; }
+.cs-category--industrial .cs-category__arrow { background: #fff; color: var(--cs-navy); }
+.cs-category--industrial > img { width: 72%; height: 65%; right: -17px; }
+.cs-category--medical { grid-column: 2; grid-row: 2; }
+.cs-category--technology { grid-column: 3; grid-row: 2; }
+.cs-category--season { grid-column: 4; grid-row: 2; background: #eef5ff; }
+.cs-category--season > img { width: 56%; height: 91%; right: -9px; }
+
+/* CANVORA STORE — PARTE 2: PRODUCTOS, TEMPORADA, CATÁLOGO Y RESPONSIVE */
+.cs-products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.cs-product { display: flex; flex-direction: column; min-width: 0; padding: 17px 15px 14px; border: 1px solid var(--cs-border); border-radius: 11px; background: #fff; transition: box-shadow .2s ease, transform .2s ease; }
+.cs-product:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgb(15 52 93 / 8%); }
+.cs-product__label { color: #7397c6; font-size: 9px; font-weight: 800; letter-spacing: 1px; line-height: 1.5; text-transform: uppercase; }
+.cs-product h3 { min-height: 40px; margin-top: 7px; color: var(--cs-navy); font-size: 14px; font-weight: 800; line-height: 1.35; }
+.cs-product > img { width: 100%; height: 178px; margin: 8px 0 14px; object-fit: contain; }
+.cs-product .cs-button { width: 100%; min-height: 37px; margin-top: auto; padding: 8px 12px; font-size: 11px; }
+
+/* BANNER DE TEMPORADA */
+.cs-season { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 270px; margin-top: 28px; overflow: hidden; border-radius: 13px; background: #710b12; color: #fff; }
+.cs-season > img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.cs-season::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgb(105 9 17 / 90%) 0%, rgb(105 9 17 / 65%) 30%, transparent 67%); }
+.cs-season__content { width: 58%; padding: 36px; }
+.cs-season .cs-eyebrow { color: #e8b4b3; font-size: 10px; letter-spacing: 2px; }
+.cs-season h2 { margin-top: 9px; color: #fff; font-size: clamp(28px, 3.1vw, 39px); font-weight: 600; }
+.cs-season__content > p:not(.cs-eyebrow) { margin-top: 10px; color: #f4d7d6; font-size: 13px; }
+.cs-season .cs-button { margin-top: 21px; min-height: 37px; padding: 9px 20px; font-size: 11px; }
+
+/* CÓMO COMPRAR Y CONTACTO */
+.cs-buy { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; align-items: stretch; }
+.cs-buy__main h2 { margin-bottom: 22px; font-size: 21px; }
+.cs-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.cs-step { display: flex; align-items: flex-start; gap: 10px; }
+.cs-step__number { display: grid; flex-shrink: 0; place-items: center; width: 35px; height: 35px; border-radius: 50%; background: #edf5ff; color: var(--cs-blue); font-size: 14px; font-weight: 800; }
+.cs-step h3 { margin: 2px 0 6px; color: var(--cs-navy); font-size: 12px; font-weight: 800; }
+.cs-step p { color: var(--cs-muted); font-size: 10px; line-height: 1.65; }
+.cs-contact { position: relative; overflow: hidden; padding: 23px; border-radius: 12px; background: linear-gradient(135deg, #087eff, #0050de); color: #fff; }
+.cs-contact::after { content: ""; position: absolute; right: -40px; bottom: -85px; width: 140px; height: 230px; border: 22px solid rgb(255 255 255 / 10%); border-radius: 28px; transform: rotate(35deg); pointer-events: none; }
+.cs-contact h3 { position: relative; z-index: 1; font-size: 16px; font-weight: 800; line-height: 1.3; }
+.cs-contact > p { margin-top: 7px; color: #dceaff; font-size: 12px; }
+.cs-contact .cs-button { position: relative; z-index: 1; width: 100%; min-height: 36px; margin-top: 17px; padding: 8px 12px; font-size: 11px; }
+.cs-contact__notice { position: relative; z-index: 1; }
+
+/* PREGUNTAS FRECUENTES */
+.cs-faq__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 10px 16px; }
+.cs-faq details { border: 1px solid var(--cs-border); border-radius: 9px; background: #fff; }
+.cs-faq summary { position: relative; padding: 14px 38px 14px 17px; color: var(--cs-text); font-size: 12px; font-weight: 600; line-height: 1.5; list-style: none; cursor: pointer; }
+.cs-faq summary::-webkit-details-marker { display: none; }
+.cs-faq summary::after { content: "+"; position: absolute; top: 10px; right: 16px; color: #7395bf; font-size: 20px; font-weight: 400; }
+.cs-faq details[open] summary::after { content: "−"; }
+.cs-faq details[open] { background: #f8fbff; }
+.cs-faq details > p { padding: 0 17px 16px; color: var(--cs-muted); font-size: 12px; line-height: 1.75; }
+
+/* CATÁLOGO */
+.cs-catalog { width: min(1060px, calc(100% - 32px)); max-height: 88dvh; margin: auto; padding: 28px; overflow-y: auto; border: 0; border-radius: 17px; background: #f7faff; color: var(--cs-text); box-shadow: 0 25px 90px rgb(0 0 0 / 24%); }
+.cs-catalog::backdrop { background: rgb(5 22 43 / 65%); backdrop-filter: blur(4px); }
+.cs-catalog__heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+.cs-catalog__heading h2 { margin-top: 8px; }
+.cs-catalog__close { display: grid; flex-shrink: 0; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid var(--cs-border); border-radius: 50%; background: #fff; color: var(--cs-navy); font-size: 28px; line-height: 1; }
+.cs-catalog__close:hover { background: #eaf2ff; }
+.cs-catalog__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cs-catalog__empty { padding: 30px 10px; text-align: center; }
+.cs-catalog__empty p { margin-bottom: 20px; color: var(--cs-muted); }
+
+/* TABLET */
+@media (max-width: 1000px) {
+    .cs-shell { width: calc(100% - 36px); }
+    .cs-hero { min-height: 330px; }
+    .cs-hero__content { width: 58%; padding: 35px 28px; }
+    .cs-hero h1 { font-size: 34px; }
+    .cs-hero__visual { left: 46%; }
+    .cs-categories { grid-template-columns: 1.1fr 1fr 1fr; grid-template-rows: repeat(3, 165px); }
+    .cs-category--large { grid-column: 1; grid-row: 1 / 4; }
+    .cs-category--food { grid-column: 2; grid-row: 1; }
+    .cs-category--food .cs-category__content { width: 62%; }
+    .cs-category--food > img { width: 65%; height: 78%; }
+    .cs-category--industrial { grid-column: 3; grid-row: 1; }
+    .cs-category--medical { grid-column: 2; grid-row: 2; }
+    .cs-category--technology { grid-column: 3; grid-row: 2; }
+    .cs-category--season { grid-column: 2 / 4; grid-row: 3; }
+    .cs-category--season > img { width: 40%; right: 15px; }
+    .cs-buy { grid-template-columns: 1fr; }
+    .cs-contact { display: grid; grid-template-columns: 1fr auto; column-gap: 20px; align-items: center; }
+    .cs-contact h3, .cs-contact > p { grid-column: 1; }
+    .cs-contact .cs-button { grid-column: 2; grid-row: 1 / 3; width: auto; margin: 0; }
+}
+
+/* CELULAR */
+@media (max-width: 680px) {
+    .cs-page { padding-top: 16px; }
+    .cs-shell { width: calc(100% - 28px); }
+    .cs-hero { min-height: 480px; align-items: flex-start; }
+    .cs-hero__content { width: 100%; padding: 28px 22px; }
+    .cs-hero h1 { max-width: 350px; font-size: clamp(27px, 7vw, 35px); }
+    .cs-hero__content > p:not(.cs-eyebrow) { max-width: 270px; font-size: 13px; }
+    .cs-hero .cs-button { margin-top: 18px; }
+    .cs-hero__visual { inset: auto 0 0 8%; height: 205px; }
+    .cs-hero__background { object-position: 65% center; }
+    .cs-hero__side { font-size: 9px; padding: 15px; }
+    .cs-heading { align-items: flex-start; gap: 12px; }
+    .cs-page h2 { font-size: 20px; }
+    .cs-heading > p { display: none; }
+    .cs-text-link { flex-shrink: 0; max-width: 115px; font-size: 10px; }
+    .cs-section { margin-top: 28px; }
+    .cs-categories { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 250px repeat(2, 175px) 165px; gap: 10px; }
+    .cs-category { padding: 16px; }
+    .cs-category strong { font-size: 14px; }
+    .cs-category--large { grid-column: 1 / 3; grid-row: 1; }
+    .cs-category--large .cs-category__content { width: 48%; }
+    .cs-category--large strong { font-size: 21px; }
+    .cs-category--large > img { width: 65%; height: 100%; right: -8px; }
+    .cs-category--food { grid-column: 1; grid-row: 2; }
+    .cs-category--industrial { grid-column: 2; grid-row: 2; }
+    .cs-category--medical { grid-column: 1; grid-row: 3; }
+    .cs-category--technology { grid-column: 2; grid-row: 3; }
+    .cs-category--season { grid-column: 1 / 3; grid-row: 4; }
+    .cs-products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .cs-product { padding: 13px 11px; }
+    .cs-product h3 { font-size: 12px; }
+    .cs-product__label { font-size: 8px; letter-spacing: .5px; }
+    .cs-product > img { height: 135px; }
+    .cs-season { min-height: 245px; }
+    .cs-season > img { object-position: 61% center; }
+    .cs-season::before { background: linear-gradient(90deg, rgb(105 9 17 / 95%), rgb(105 9 17 / 70%) 45%, rgb(105 9 17 / 10%)); }
+    .cs-season__content { width: 83%; padding: 25px 22px; }
+    .cs-season h2 { font-size: 28px; }
+    .cs-season__content > p:not(.cs-eyebrow) { max-width: 220px; font-size: 12px; }
+    .cs-steps { grid-template-columns: 1fr; gap: 18px; }
+    .cs-step h3 { font-size: 14px; }
+    .cs-step p { font-size: 12px; }
+    .cs-contact { display: block; }
+    .cs-contact .cs-button { width: 100%; margin-top: 17px; }
+    .cs-faq__grid { grid-template-columns: 1fr; }
+    .cs-catalog { padding: 20px 14px; }
+    .cs-catalog__heading h2 { font-size: 20px; }
+    .cs-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .cs-page *, .cs-page *::before, .cs-page *::after { transition: none !important; scroll-behavior: auto !important; }
+}
