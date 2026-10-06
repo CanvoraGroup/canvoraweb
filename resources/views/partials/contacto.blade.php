@@ -24,23 +24,23 @@
         decoding="async">
 
     <div class="container contact-inner">
-        <div class="contact-copy">
-            <p class="eyebrow">
-                {{ $etiquetaContacto ?? 'Hagamos crecer tu negocio' }}
+        <div class="contact-copy contact-card-glass" data-3d-tilt>
+            <p class="eyebrow" style="color: var(--c-cyan);">
+                {{ $etiquetaContacto ?? '✦ Hagamos crecer tu negocio' }}
             </p>
 
-            <h2 id="contact-title">
+            <h2 id="contact-title" style="color: #ffffff;">
                 {{ $tituloContacto ?? 'Cuéntanos tu proyecto.' }}
             </h2>
 
-            <p class="contact-description">
+            <p class="contact-description" style="color: #cbd5e1;">
                 {{ $descripcionContacto
                     ?? 'Conversemos sobre tus necesidades y encontremos la solución adecuada para tu negocio.' }}
             </p>
 
             <div class="contact-actions">
                 <a
-                    class="button"
+                    class="button btn-primary-3d"
                     href="{{ $enlaceContacto }}"
                     @if($numero !== '')
                         target="_blank"
@@ -54,7 +54,7 @@
 
                 @if($numero !== '')
                     <a
-                        class="button button-outline"
+                        class="button btn-outline-3d"
                         href="{{ $enlaceContacto }}"
                         target="_blank"
                         rel="noopener noreferrer">
