@@ -1,3 +1,4 @@
+
 @extends('layouts.web')
 
 @section('title', 'Canvora Tech | Software, automatización y soporte')
