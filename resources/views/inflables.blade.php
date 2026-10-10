@@ -2,510 +2,209 @@
 
 @section('contenido')
 @php
-    $numero = preg_replace('/\D/', '', (string) config('canvora.whatsapp'));
-
-    $cotizar = function ($producto = '') use ($numero) {
-        if (!$numero) {
-            return '#contacto-inflables';
-        }
-
-        $mensaje = $producto
-            ? "Hola, Canvora. Quisiera información y una cotización de: {$producto}."
-            : 'Hola, Canvora. Quisiera cotizar un inflable para mi evento.';
-
-        return 'https://wa.me/' . $numero . '?text=' . rawurlencode($mensaje);
-    };
-
-    $publicitarios = [
-        [
-            'nombre' => 'Arcos inflables',
-            'descripcion' => 'Una entrada que destaca en eventos y activaciones.',
-            'imagen' => 'arco-publicitario.jpg',
-        ],
-        [
-            'nombre' => 'Globos publicitarios',
-            'descripcion' => 'Dale presencia a tu marca con un formato de gran tamaño.',
-            'imagen' => 'globo-pera.jpg',
-        ],
-        [
-            'nombre' => 'Carpas inflables',
-            'descripcion' => 'Espacios llamativos para exhibiciones y campañas.',
-            'imagen' => 'carpa-verde.jpg',
-        ],
-        [
-            'nombre' => 'Tótems luminosos',
-            'descripcion' => 'Una propuesta visual para eventos y ambientaciones.',
-            'imagen' => 'totems-luminosos.jpg',
-        ],
-        [
-            'nombre' => 'Réplicas de productos',
-            'descripcion' => 'Convierte la forma de tu producto en una gran idea.',
-            'imagen' => 'replica-envase.jpg',
-        ],
-        [
-            'nombre' => 'Globos mochila',
-            'descripcion' => 'Una opción para acompañar activaciones de marca.',
-            'imagen' => 'globo-mochila.jpg',
-        ],
-        [
-            'nombre' => 'Pelotas gigantes',
-            'descripcion' => 'Formatos para animar eventos y dar visibilidad.',
-            'imagen' => 'pelotas-gigantes.jpg',
-        ],
-        [
-            'nombre' => 'Muñecos publicitarios',
-            'descripcion' => 'Una figura llamativa para destacar tu negocio.',
-            'imagen' => 'muneco-publicitario.jpg',
-        ],
-    ];
-
-    $infantiles = [
-        [
-            'nombre' => 'Castillos inflables',
-            'descripcion' => 'Ideas para cumpleaños y celebraciones infantiles.',
-            'imagen' => 'castillo-infantil.png',
-        ],
-        [
-            'nombre' => 'Toboganes inflables',
-            'descripcion' => 'Consulta modelos, medidas y disponibilidad para tu evento.',
-            'imagen' => 'tobogan-infantil.png',
-        ],
-    ];
-
-    $preguntas = [
-        [
-            'titulo' => '¿Qué tipos de inflables puedo consultar?',
-            'respuesta' => 'Puedes consultar inflables publicitarios e infantiles. Cuéntanos qué necesitas y te confirmaremos los modelos, medidas y disponibilidad.',
-        ],
-        [
-            'titulo' => '¿Se pueden personalizar?',
-            'respuesta' => 'En los modelos publicitarios podemos evaluar colores, dimensiones y ubicación del logo según el producto. La propuesta se confirma antes de contratar.',
-        ],
-        [
-            'titulo' => '¿Puedo consultar por compra o alquiler?',
-            'respuesta' => 'Sí. Indica cuál de las dos opciones buscas y te confirmaremos qué modalidad está disponible para el modelo elegido.',
-        ],
-        [
-            'titulo' => '¿Qué información necesito para cotizar?',
-            'respuesta' => 'Envíanos el modelo de interés, ciudad, fecha del evento y medidas aproximadas del espacio. Para publicidad, puedes adjuntar tu logo o una referencia.',
-        ],
-    ];
+$numero = preg_replace('/\D/', '', config('canvora.whatsapp', ''));
+$cotizar = fn($producto) => $numero !== '' ? 'https://wa.me/'.$numero.'?text='.rawurlencode('Hola, quisiera cotizar '.$producto.' con CANVORA INFLABLES.') : '#contacto-inflables';
+$productos = [
+['nombre' => 'Arco cilíndrico', 'categoria' => 'arcos', 'imagen' => 'arco-cilindrico.jpg', 'descripcion' => 'Presencia visual para entradas y activaciones.'],
+['nombre' => 'Arco de esquinas redondas', 'categoria' => 'arcos', 'imagen' => 'arco-esquinas-redondas.jpg', 'descripcion' => 'Un acceso que destaca tu marca.'],
+['nombre' => 'Arco publicitario', 'categoria' => 'arcos', 'imagen' => 'arco-publicitario.jpg', 'descripcion' => 'Dale protagonismo a tu evento.'],
+['nombre' => 'Carpa blanca', 'categoria' => 'carpas', 'imagen' => 'carpa-blanca.jpg', 'descripcion' => 'Un espacio para presentar tu marca.'],
+['nombre' => 'Carpa verde', 'categoria' => 'carpas', 'imagen' => 'carpa-verde.jpg', 'descripcion' => 'Una presencia diferente para tus activaciones.'],
+['nombre' => 'Globo pera', 'categoria' => 'globos', 'imagen' => 'globo-pera.jpg', 'descripcion' => 'Tu mensaje en gran formato.'],
+['nombre' => 'Globo verde', 'categoria' => 'globos', 'imagen' => 'globo-verde.jpg', 'descripcion' => 'Haz que tu marca destaque.'],
+['nombre' => 'Globo mochila', 'categoria' => 'globos', 'imagen' => 'globo-mochila.jpg', 'descripcion' => 'Lleva tu publicidad donde está tu público.'],
+['nombre' => 'Cilindro mochila', 'categoria' => 'globos', 'imagen' => 'cilindro-mochila.jpg', 'descripcion' => 'Publicidad móvil para tus campañas.'],
+['nombre' => 'Muñeco publicitario', 'categoria' => 'personajes', 'imagen' => 'muneco-publicitario.jpg', 'descripcion' => 'Movimiento que atrae las miradas.'],
+['nombre' => 'Personaje inflable', 'categoria' => 'personajes', 'imagen' => 'personaje-inflable.jpg', 'descripcion' => 'Dale vida a tu personaje o mascota.'],
+['nombre' => 'Réplica de botella', 'categoria' => 'replicas', 'imagen' => 'replica-botella.jpg', 'descripcion' => 'Tu producto en tamaño gigante.'],
+['nombre' => 'Réplica de envase', 'categoria' => 'replicas', 'imagen' => 'replica-envase.jpg', 'descripcion' => 'Convierte tu empaque en protagonista.'],
+['nombre' => 'Pelotas gigantes', 'categoria' => 'replicas', 'imagen' => 'pelotas-gigantes.jpg', 'descripcion' => 'Una forma diferente de mostrar tu marca.'],
+['nombre' => 'Pack arco y tótems', 'categoria' => 'totems', 'imagen' => 'pack-arco-totems.jpg', 'descripcion' => 'Un conjunto visual para tu evento.'],
+['nombre' => 'Tótems luminosos', 'categoria' => 'totems', 'imagen' => 'totems-luminosos.jpg', 'descripcion' => 'Tu marca también destaca de noche.'],
+['nombre' => 'Castillo infantil', 'categoria' => 'infantiles', 'imagen' => 'castillo-infantil.png', 'descripcion' => 'Color y diversión para las celebraciones.'],
+['nombre' => 'Celebración infantil', 'categoria' => 'infantiles', 'imagen' => 'celebracion-infantil.png', 'descripcion' => 'Un espacio para compartir y jugar.'],
+['nombre' => 'Tobogán infantil', 'categoria' => 'infantiles', 'imagen' => 'tobogan-infantil.png', 'descripcion' => 'Diversión a lo grande.'],
+];
+$escenarios = [
+['titulo' => 'Publicidad que destaca', 'categoria' => 'arcos', 'indices' => [11, 0, 6]],
+['titulo' => 'Activa tu marca', 'categoria' => 'globos', 'indices' => [8, 7, 10]],
+['titulo' => 'Diversión a lo grande', 'categoria' => 'infantiles', 'indices' => [16, 18, 17]],
+];
+$categorias = ['todos' => 'Todos', 'arcos' => 'Arcos', 'carpas' => 'Carpas', 'globos' => 'Globos', 'replicas' => 'Réplicas', 'totems' => 'Tótems', 'personajes' => 'Personajes', 'infantiles' => 'Infantiles'];
 @endphp
 
-<main class="ci-page">
-    {{-- PORTADA --}}
-    <section class="ci-hero">
-        <div class="ci-container ci-hero__grid">
-            <div class="ci-hero__content">
-                <p class="ci-eyebrow">CANVORA INFLABLES</p>
-
-                <h1>
-                    Grandes ideas.
-                    <span>Grandes momentos.</span>
-                </h1>
-
-                <p class="ci-hero__description">
-                    Inflables publicitarios e infantiles para
-                    marcas y celebraciones que dejan huella.
-                </p>
-
-                <a class="ci-button" href="{{ $cotizar() }}">
-                    Consultar disponibilidad
-                    <span aria-hidden="true">→</span>
-                </a>
-
-                <div class="ci-benefits">
-                    <div>
-                        <span aria-hidden="true">✦</span>
-                        <p>Impacto visual</p>
-                    </div>
-
-                    <div>
-                        <span aria-hidden="true">◇</span>
-                        <p>Versatilidad</p>
-                    </div>
-
-                    <div>
-                        <span aria-hidden="true">♡</span>
-                        <p>Momentos especiales</p>
-                    </div>
-
-                    <div>
-                        <span aria-hidden="true">☆</span>
-                        <p>Ideas a tu medida</p>
-                    </div>
+<div id="ci-inflables">
+    <section class="ci-hero" aria-labelledby="ci-title">
+        <div class="ci-container ci-hero-grid">
+            <div class="ci-hero-copy">
+                <span class="ci-eyebrow">CANVORA INFLABLES</span>
+                <h1 id="ci-title">Inflables que <span>se roban las miradas.</span></h1>
+                <p>Dale vida a tus eventos y activa tu marca con inflables publicitarios y recreativos. Venta y alquiler para tu próxima idea.</p>
+                <div class="ci-actions">
+                    <a class="ci-button ci-primary" href="{{ $cotizar('un inflable') }}">Cotizar mi proyecto <span aria-hidden="true">→</span></a>
+                    <a class="ci-button ci-secondary" href="#catalogo-inflables">Ver catálogo</a>
+                </div>
+                <div class="ci-hero-notes">
+                    <span>Para empresas y eventos</span>
+                    <span>Publicidad en gran formato</span>
+                    <span>Inflables recreativos</span>
                 </div>
             </div>
-
-            <div class="ci-hero__collage">
-                <figure class="ci-hero__arch">
-                    <img
-                        src="{{ asset('images/inflables/arco-publicitario.jpg') }}"
-                        alt="Arco publicitario instalado en un espacio exterior"
-                        fetchpriority="high"
-                        width="1632"
-                        height="754"
-                    >
-                </figure>
-
-                <figure class="ci-hero__globe">
-                    <img
-                        src="{{ asset('images/inflables/globo-pera.jpg') }}"
-                        alt="Globo publicitario de gran tamaño"
-                        width="1223"
-                        height="1223"
-                    >
-                </figure>
-
-                <figure class="ci-hero__castle">
-                    <img
-                        src="{{ asset('images/inflables/castillo-infantil.png') }}"
-                        alt="Diseño referencial de castillo inflable infantil"
-                        width="1448"
-                        height="1086"
-                    >
-                    <figcaption>Imagen referencial</figcaption>
-                </figure>
-            </div>
-        </div>
-    </section>
-
-    {{-- LAS DOS LÍNEAS --}}
-    <section class="ci-lines" aria-label="Líneas de inflables">
-        <div class="ci-container ci-lines__grid">
-            <article class="ci-line ci-line--business" id="publicitarios">
-                <img
-                    src="{{ asset('images/inflables/carpa-verde.jpg') }}"
-                    alt="Carpa inflable publicitaria"
-                    loading="lazy"
-                    width="1856"
-                    height="836"
-                >
-
-                <div class="ci-line__content">
-                    <p class="ci-eyebrow">INFLABLES PUBLICITARIOS</p>
-                    <h2>Haz crecer <span>tu marca.</span></h2>
-
-                    <p>
-                        Formatos de gran impacto para
-                        eventos, campañas y activaciones.
-                    </p>
-
-                    <button
-                        class="ci-button ci-button--white"
-                        type="button"
-                        data-ci-category="publicitarios"
-                        data-ci-jump
-                    >
-                        Ver modelos <span aria-hidden="true">→</span>
-                    </button>
-                </div>
-            </article>
-
-            <article class="ci-line ci-line--children" id="infantiles">
-                <img
-                    src="{{ asset('images/inflables/tobogan-infantil.png') }}"
-                    alt="Diseño referencial de tobogán inflable"
-                    loading="lazy"
-                    width="1448"
-                    height="1086"
-                >
-
-                <div class="ci-line__content">
-                    <p class="ci-eyebrow">INFLABLES INFANTILES</p>
-                    <h2>Haz especial <span>su celebración.</span></h2>
-
-                    <p>
-                        Castillos y toboganes para celebrar.
-                        Consulta modelos y disponibilidad.
-                    </p>
-
-                    <button
-                        class="ci-button ci-button--white"
-                        type="button"
-                        data-ci-category="infantiles"
-                        data-ci-jump
-                    >
-                        Ver modelos <span aria-hidden="true">→</span>
-                    </button>
-                </div>
-
-                <span class="ci-reference">Imagen referencial</span>
-            </article>
-        </div>
-    </section>
-
-    {{-- CATÁLOGO --}}
-    <section class="ci-catalog" id="modelos-inflables">
-        <div class="ci-container">
-            <div class="ci-heading">
-                <p class="ci-eyebrow">ELIGE TU EXPERIENCIA</p>
-                <h2>Nuestras líneas de inflables</h2>
-
-                <div class="ci-tabs" role="group" aria-label="Filtrar modelos">
-                    <button
-                        type="button"
-                        class="is-active"
-                        data-ci-category="publicitarios"
-                        aria-pressed="true"
-                    >
-                        Publicitarios
-                    </button>
-
-                    <button
-                        type="button"
-                        data-ci-category="infantiles"
-                        aria-pressed="false"
-                    >
-                        Infantiles
-                    </button>
-                </div>
-            </div>
-
-            <div class="ci-carousel">
-                <button
-                    class="ci-arrow ci-arrow--previous"
-                    id="ci-previous"
-                    type="button"
-                    aria-label="Ver modelos anteriores"
-                >
-                    ‹
-                </button>
-
-                <div
-                    class="ci-track"
-                    id="ci-track"
-                    tabindex="0"
-                    aria-label="Modelos de inflables"
-                    aria-roledescription="carrusel"
-                >
-                    @foreach ($publicitarios as $producto)
-                        <article
-                            class="ci-card"
-                            data-ci-group="publicitarios"
-                        >
-                            <div class="ci-card__image">
-                                <img
-                                    src="{{ asset('images/inflables/' . $producto['imagen']) }}"
-                                    alt="{{ $producto['nombre'] }} del catálogo de referencia"
-                                    loading="lazy"
-                                >
-                            </div>
-
-                            <div class="ci-card__body">
-                                <h3>{{ $producto['nombre'] }}</h3>
-                                <p>{{ $producto['descripcion'] }}</p>
-
-                                <a href="{{ $cotizar($producto['nombre']) }}">
-                                    Consultar modelo
-                                    <span aria-hidden="true">→</span>
-                                </a>
-
-                                <small>Referencia del catálogo</small>
-                            </div>
-                        </article>
+            <div class="ci-showcase" aria-label="Productos destacados">
+                <div class="ci-stage" data-ci-stage>
+                    <div class="ci-stage-glow"></div>
+                    @foreach($escenarios as $escenario)
+                    <div class="ci-scene {{ $loop->first ? 'is-active' : '' }}" data-ci-scene aria-hidden="{{ $loop->first ? 'false' : 'true' }}">
+                        @foreach($escenario['indices'] as $indice)
+                        <figure class="ci-display ci-display-{{ $loop->iteration }}">
+                            <img src="{{ asset('images/inflables/'.$productos[$indice]['imagen']) }}" alt="{{ $productos[$indice]['nombre'] }}" width="600" height="700" decoding="async" @if($loop->parent->first) fetchpriority="high" @else loading="lazy" @endif>
+                            <figcaption>{{ $productos[$indice]['nombre'] }}</figcaption>
+                        </figure>
+                        @endforeach
+                    </div>
                     @endforeach
-
-                    @foreach ($infantiles as $producto)
-                        <article
-                            class="ci-card"
-                            data-ci-group="infantiles"
-                            hidden
-                        >
-                            <div class="ci-card__image">
-                                <img
-                                    src="{{ asset('images/inflables/' . $producto['imagen']) }}"
-                                    alt="Imagen referencial de {{ mb_strtolower($producto['nombre']) }}"
-                                    loading="lazy"
-                                >
-
-                                <span class="ci-reference">
-                                    Imagen referencial
-                                </span>
-                            </div>
-
-                            <div class="ci-card__body">
-                                <h3>{{ $producto['nombre'] }}</h3>
-                                <p>{{ $producto['descripcion'] }}</p>
-
-                                <a href="{{ $cotizar($producto['nombre']) }}">
-                                    Consultar disponibilidad
-                                    <span aria-hidden="true">→</span>
-                                </a>
-
-                                <small>Modelo ilustrativo</small>
-                            </div>
-                        </article>
-                    @endforeach
+                    <div class="ci-podium" aria-hidden="true"></div>
                 </div>
-
-                <button
-                    class="ci-arrow ci-arrow--next"
-                    id="ci-next"
-                    type="button"
-                    aria-label="Ver siguientes modelos"
-                >
-                    ›
-                </button>
+                <div class="ci-showcase-controls">
+                    <button class="ci-arrow" type="button" data-ci-prev aria-label="Mostrar productos anteriores">‹</button>
+                    <div class="ci-scene-tabs" aria-label="Elegir grupo de productos">
+                        @foreach($escenarios as $escenario)
+                        <button class="{{ $loop->first ? 'is-active' : '' }}" type="button" data-ci-slide="{{ $loop->index }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}">{{ $categorias[$escenario['categoria']] }}</button>
+                        @endforeach
+                    </div>
+                    <button class="ci-arrow" type="button" data-ci-next aria-label="Mostrar siguientes productos">›</button>
+                </div>
+                <div class="ci-showcase-caption">
+                    <span data-ci-caption>{{ $escenarios[0]['titulo'] }}</span>
+                    <button type="button" data-ci-pause aria-label="Pausar cambio automático" aria-pressed="false">Pausar</button>
+                </div>
             </div>
-
-            <div
-                class="ci-dots"
-                id="ci-dots"
-                role="group"
-                aria-label="Posiciones del catálogo"
-            ></div>
         </div>
     </section>
 
-    {{-- BANNER INFANTIL --}}
-    <section class="ci-family">
-        <div class="ci-container">
-            <article class="ci-family__panel">
-                <img
-                    src="{{ asset('images/inflables/celebracion-infantil.png') }}"
-                    alt="Escena referencial de celebración con inflables infantiles"
-                    loading="lazy"
-                    width="1672"
-                    height="941"
-                >
-
-                <div class="ci-family__content">
-                    <p class="ci-eyebrow">INFLABLES INFANTILES</p>
-
-                    <h2>
-                        Diversión para
-                        sus mejores
-                        <span>recuerdos.</span>
-                    </h2>
-
-                    <p>
-                        Cuéntanos la fecha, el lugar y el espacio
-                        disponible para encontrar una propuesta
-                        para tu celebración.
-                    </p>
-
-                    <a class="ci-button" href="{{ $cotizar('Inflables infantiles') }}">
-                        Consultar disponibilidad
-                        <span aria-hidden="true">→</span>
-                    </a>
-                </div>
-
-                <span class="ci-reference">Imagen referencial</span>
-            </article>
+<section class="ci-section" id="catalogo-inflables" aria-labelledby="ci-catalog-title">
+    <div class="ci-container">
+        <div class="ci-heading">
+            <div><span class="ci-eyebrow">NUESTRO CATÁLOGO</span><h2 id="ci-catalog-title">Encuentra tu próximo <span>inflable.</span></h2></div>
+            <p>Explora por categoría y descubre una opción para tu marca o evento.</p>
         </div>
-    </section>
-
-    {{-- PERSONALIZACIÓN --}}
-    <section class="ci-personalize">
-        <div class="ci-container ci-info-grid">
-            <div>
-                <p class="ci-eyebrow">PERSONALIZA TU INFLABLE</p>
-                <h2>A tu medida</h2>
-                <p>Evaluamos tu idea y las opciones para cada modelo.</p>
-            </div>
-
-            <article class="ci-feature">
-                <span class="ci-feature__icon" aria-hidden="true">↗</span>
-                <div>
-                    <h3>Tamaño</h3>
-                    <p>Dimensiones según el modelo y el espacio.</p>
-                </div>
-            </article>
-
-            <article class="ci-feature">
-                <span class="ci-feature__icon" aria-hidden="true">◉</span>
-                <div>
-                    <h3>Color</h3>
-                    <p>Opciones que acompañan la identidad de tu marca.</p>
-                </div>
-            </article>
-
-            <article class="ci-feature">
-                <span class="ci-feature__icon" aria-hidden="true">✎</span>
-                <div>
-                    <h3>Diseño</h3>
-                    <p>Logo, mensajes y propuesta visual para publicidad.</p>
-                </div>
-            </article>
+        <div class="ci-filters" role="group" aria-label="Categorías del catálogo">
+            @foreach($categorias as $clave => $nombre)
+                <button class="{{ $loop->first ? 'is-active' : '' }}" type="button" data-ci-filter="{{ $clave }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}">{{ $nombre }}</button>
+            @endforeach
         </div>
-    </section>
-
-    {{-- PROCESO --}}
-    <section class="ci-process">
-        <div class="ci-container ci-process__grid">
-            <div>
-                <p class="ci-eyebrow">UN PROCESO SIMPLE</p>
-                <h2>De la idea al evento</h2>
-            </div>
-
-            <ol class="ci-steps">
-                <li>
-                    <span>1</span>
-                    <h3>Idea</h3>
-                    <p>Cuéntanos qué necesitas y para cuándo.</p>
-                </li>
-
-                <li>
-                    <span>2</span>
-                    <h3>Propuesta</h3>
-                    <p>Revisamos modelos y opciones para tu proyecto.</p>
-                </li>
-
-                <li>
-                    <span>3</span>
-                    <h3>Cotización</h3>
-                    <p>Definimos condiciones, alcance y presupuesto.</p>
-                </li>
-
-                <li>
-                    <span>4</span>
-                    <h3>Coordinación</h3>
-                    <p>Acordamos los detalles de entrega o del evento.</p>
-                </li>
-            </ol>
-        </div>
-    </section>
-
-    {{-- PREGUNTAS --}}
-    <section class="ci-faq">
-        <div class="ci-container ci-faq__grid">
-            <div>
-                <p class="ci-eyebrow">PREGUNTAS FRECUENTES</p>
-                <h2>¿Tienes dudas?</h2>
-                <p>Te ayudamos a definir la mejor opción para tu idea.</p>
-            </div>
-
-            <div class="ci-faq__list">
-                @foreach ($preguntas as $pregunta)
-                    <details>
-                        <summary>{{ $pregunta['titulo'] }}</summary>
-                        <p>{{ $pregunta['respuesta'] }}</p>
-                    </details>
+        <div class="cic-catalog" data-cic-catalog role="region" aria-roledescription="carrusel" aria-label="Catálogo de inflables">
+            <div class="cic-stage" data-cic-stage>
+                @foreach($productos as $producto)
+                    <article class="cic-card {{ $loop->first ? 'is-current' : '' }}" data-cic-card data-category="{{ $producto['categoria'] }}" aria-hidden="{{ $loop->first ? 'false' : 'true' }}" @if(!$loop->first) inert @endif>
+                        <div class="cic-photo">
+                            <img src="{{ asset('images/inflables/'.$producto['imagen']) }}" alt="{{ $producto['nombre'] }}" width="900" height="700" loading="lazy" decoding="async">
+                        </div>
+                        <div class="cic-info">
+                            <span class="cic-category">{{ $categorias[$producto['categoria']] }}</span>
+                            <h3>{{ $producto['nombre'] }}</h3>
+                            <p>{{ $producto['descripcion'] }}</p>
+                            <span class="cic-service">Consulta opciones de venta y alquiler.</span>
+                            <a class="ci-button ci-primary" href="{{ $cotizar($producto['nombre']) }}">Cotizar este inflable <span aria-hidden="true">↗</span></a>
+                            <a class="cic-original" href="{{ asset('images/inflables/'.$producto['imagen']) }}" target="_blank" rel="noopener noreferrer">Ver fotografía completa ↗</a>
+                        </div>
+                    </article>
                 @endforeach
             </div>
-        </div>
-    </section>
-
-    {{-- CONTACTO --}}
-    <section class="ci-contact" id="contacto-inflables">
-        <div class="ci-container ci-contact__grid">
-            <div>
-                <p class="ci-eyebrow">CONVERSEMOS</p>
-                <h2>Hagamos realidad tu próximo evento.</h2>
-                <p>
-                    Cuéntanos tu idea, ciudad y fecha.
-                    Te ayudaremos a definir tu cotización.
-                </p>
+            <div class="cic-controls">
+                <button class="cic-arrow" type="button" data-cic-prev aria-label="Producto anterior">←</button>
+                <div class="cic-counter"><strong data-cic-position>01</strong><span>/</span><span data-cic-total>{{ count($productos) }}</span></div>
+                <button class="cic-arrow" type="button" data-cic-next aria-label="Producto siguiente">→</button>
+                <button class="cic-pause" type="button" data-cic-pause aria-pressed="false">Pausar</button>
             </div>
+            <p class="cic-hint">Elige una categoría o usa las flechas para explorar.</p>
+            <span class="cic-sr" data-cic-announcement aria-live="polite" aria-atomic="true"></span>
+        </div>
+    </div>
+</section>
 
-            @if ($numero)
-                <a class="ci-button ci-button--white" href="{{ $cotizar() }}">
-                    Cotizar por WhatsApp
-                    <span aria-hidden="true">→</span>
-                </a>
-            @endif
+    <section class="ci-section ci-night-section" aria-labelledby="ci-night-title">
+        <div class="ci-container">
+            <div class="ci-night">
+                <div class="ci-night-copy">
+                    <span class="ci-eyebrow">PRESENCIA QUE DESTACA</span>
+                    <h2 id="ci-night-title">Impacto de día.<br><span>Presencia de noche.</span></h2>
+                    <p>Los tótems luminosos aportan una presencia diferente a tus eventos y activaciones nocturnas.</p>
+                    <a class="ci-button ci-primary" href="{{ $cotizar('tótems luminosos') }}">Cotizar tótems luminosos <span aria-hidden="true">→</span></a>
+                </div>
+                <img src="{{ asset('images/inflables/totems-luminosos.jpg') }}" alt="Tótems inflables azules iluminados durante la noche" width="900" height="700" loading="lazy">
+            </div>
         </div>
     </section>
-</main>
+
+    <section class="ci-section ci-events-section" aria-labelledby="ci-events-title">
+        <div class="ci-container">
+            <div class="ci-heading">
+                <div><span class="ci-eyebrow">PARA CADA OCASIÓN</span>
+                    <h2 id="ci-events-title">Elige según <span>tu evento.</span></h2>
+                </div>
+                <p>Desde una activación de marca hasta una celebración infantil.</p>
+            </div>
+            <div class="ci-events-grid">
+                <a class="ci-event" href="#catalogo-inflables" data-ci-event-filter="arcos">
+                    <img src="{{ asset('images/inflables/arco-cilindrico.jpg') }}" alt="Arco inflable para eventos y activaciones publicitarias" width="900" height="650" loading="lazy">
+                    <div>
+                        <h3>Eventos corporativos</h3>
+                        <p>Ferias, campañas y activaciones de marca.</p><span aria-hidden="true">↗</span>
+                    </div>
+                </a>
+                <a class="ci-event" href="#catalogo-inflables" data-ci-event-filter="infantiles">
+                    <img src="{{ asset('images/inflables/celebracion-infantil.png') }}" alt="Niños disfrutando de un castillo inflable con tobogán" width="900" height="650" loading="lazy">
+                    <div>
+                        <h3>Celebraciones infantiles</h3>
+                        <p>Castillos y toboganes para compartir y jugar.</p><span aria-hidden="true">↗</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="ci-section ci-process-section" aria-labelledby="ci-process-title">
+        <div class="ci-container">
+            <div class="ci-heading">
+                <div><span class="ci-eyebrow">EMPECEMOS CON TU IDEA</span>
+                    <h2 id="ci-process-title">Del concepto <span>al inflable.</span></h2>
+                </div>
+                <p>Cuéntanos qué necesitas y revisamos las opciones para tu proyecto.</p>
+            </div>
+            <div class="ci-process-grid">
+                <article><span class="ci-step">01</span>
+                    <h3>Cuéntanos tu idea</h3>
+                    <p>Indícanos el producto, el tipo de evento y la fecha que tienes en mente.</p>
+                </article>
+                <article><span class="ci-step">02</span>
+                    <h3>Revisamos tu proyecto</h3>
+                    <p>Conversamos sobre el diseño, las medidas y las opciones de personalización.</p>
+                </article>
+                <article><span class="ci-step">03</span>
+                    <h3>Recibe tu cotización</h3>
+                    <p>Te presentamos una propuesta según las características de tu solicitud.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="ci-section ci-contact-section" id="contacto-inflables" aria-labelledby="ci-contact-title">
+        <div class="ci-container">
+            <div class="ci-contact">
+                <div><span class="ci-eyebrow">HABLEMOS DE TU PROYECTO</span>
+                    <h2 id="ci-contact-title">Cuéntanos qué tienes <span>en mente.</span></h2>
+                    <p>Tu próxima campaña o celebración empieza con una idea.</p>
+                </div>
+                @if($numero !== '')
+                <a class="ci-button ci-white" href="{{ $cotizar('un inflable para mi proyecto') }}">Cotizar por WhatsApp <span aria-hidden="true">↗</span></a>
+                @else
+                <p class="ci-contact-missing">Próximamente habilitaremos nuestro contacto por WhatsApp.</p>
+                @endif
+            </div>
+        </div>
+    </section>
+</div>
 @endsection

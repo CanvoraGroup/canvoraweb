@@ -1,915 +1,230 @@
-
+{{-- Usa aquí el nombre de tu layout compartido actual. --}}
 @extends('layouts.web')
 
-@section('title', 'Canvora Tech | Software, automatización y soporte')
+@section('titulo', 'Canvora Tech | Sistemas y desarrollo a medida')
+@section('descripcion', 'Sistemas de facturación, inventarios, pesaje, odontología, gestión vehicular, páginas web, antivirus y desarrollo a medida.')
 
-@section('description', 'Desarrollamos software a medida, aplicaciones, páginas web y automatizaciones. Soluciones de datos, infraestructura y soporte para tu negocio.')
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/tech-v2.css') }}?v=ct-v2-1">
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('js/tech-v2.js') }}?v=ct-v2-1" defer></script>
+@endpush
 
 @section('contenido')
-
 @php
-    /*
-     * El número se obtiene de config/canvora.php.
-     * Conserva el WhatsApp que ya configuraste.
-     */
-    $numeroWhatsapp = preg_replace(
-        '/\D/',
-        '',
-        (string) config('canvora.whatsapp', '')
-    );
-
-    $crearEnlaceWhatsapp = function ($mensaje) use ($numeroWhatsapp) {
-        return $numeroWhatsapp !== ''
-            ? 'https://wa.me/' . $numeroWhatsapp . '?text=' . rawurlencode($mensaje)
-            : '#contacto';
-    };
-
-    $enlaceCotizar = $crearEnlaceWhatsapp(
-        'Hola, me interesa cotizar un proyecto con Canvora Tech.'
-    );
-
-    $serviciosTech = [
-        [
-            'titulo' => 'Crear',
-            'descripcion' => 'Software a medida, aplicaciones móviles, páginas web, ecommerce e invitaciones digitales.',
-            'imagen' => 'crear.png',
-            'alt' => 'Laptop con herramientas de desarrollo de software',
-            'icono' => 'M8 5 2 12l6 7M16 5l6 7-6 7M14 3l-4 18',
-        ],
-        [
-            'titulo' => 'Automatizar',
-            'descripcion' => 'Flujos con n8n, integración de API, conexión entre sistemas y notificaciones automáticas.',
-            'imagen' => 'automatizar.png',
-            'alt' => 'Integración de aplicaciones mediante flujos de automatización',
-            'icono' => 'M12 8V5M12 16v3M8 12H5M16 12h3M8 8 6 6M16 8l2-2M8 16l-2 2M16 16l2 2M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',
-        ],
-        [
-            'titulo' => 'Analizar',
-            'descripcion' => 'Bases de datos, dashboards, reportes, análisis de información, inteligencia artificial y chatbots.',
-            'imagen' => 'analizar.png',
-            'alt' => 'Dashboard de información y asistente de inteligencia artificial',
-            'icono' => 'M4 20V12h4v8M10 20V8h4v12M16 20V4h4v16M2 20h20',
-        ],
-        [
-            'titulo' => 'Implementar y proteger',
-            'descripcion' => 'Redes, servidores, nube, hosting, respaldos, ciberseguridad, videovigilancia y control de acceso.',
-            'imagen' => 'proteger.png',
-            'alt' => 'Cámara de seguridad y servidores con cableado de red',
-            'icono' => 'M12 3 3 7v5c0 5 9 9 9 9s9-4 9-9V7l-9-4M8 12l3 3 5-6',
-        ],
-        [
-            'titulo' => 'Mantener',
-            'descripcion' => 'Soporte remoto y presencial, reparación, mantenimiento de equipos, consultoría y gestión TI.',
-            'imagen' => 'mantener.png',
-            'alt' => 'Técnico realizando mantenimiento de una laptop',
-            'icono' => 'M14 6a5 5 0 0 0-6 6L3 17a3 3 0 0 0 4 4l5-5a5 5 0 0 0 6-6l-4 4-4-4 4-4',
-        ],
-    ];
-
+    $telefonoTech = preg_replace('/\D/', '', (string) config('canvora.whatsapp', '51941765588'));
+    if ($telefonoTech === '') $telefonoTech = '51941765588';
+    $cotizarTech = fn ($mensaje) => 'https://wa.me/' . $telefonoTech . '?text=' . rawurlencode($mensaje);
     $sistemasTech = [
         [
+            'key' => 'facturacion',
             'titulo' => 'Facturación y ventas',
-            'descripcion' => 'Gestiona ventas, clientes, comprobantes, cotizaciones y cuentas por cobrar.',
-            'imagen' => 'facturacion.png',
-            'alt' => 'Sistema de ventas en un punto de atención comercial',
-            'mensaje' => 'Hola, me interesa un sistema de facturación y ventas para mi negocio.',
+            'imagen' => 'ct-v2-facturacion.png',
+            'alt' => 'Laptop con interfaz ilustrativa de facturación y comprobantes.',
+            'resumen' => 'Emite comprobantes, gestiona clientes y controla tus ventas.',
+            'detalle' => 'Organiza productos, cotizaciones, comprobantes, clientes y reportes de ventas.',
         ],
         [
+            'key' => 'inventarios',
             'titulo' => 'Inventarios y almacenes',
-            'descripcion' => 'Controla productos, existencias, ingresos, salidas, kardex y alertas de stock.',
-            'imagen' => 'inventarios.png',
-            'alt' => 'Tablet con sistema de inventario en un almacén',
-            'mensaje' => 'Hola, me interesa un sistema de inventarios y almacenes.',
+            'imagen' => 'ct-v2-inventarios.png',
+            'alt' => 'Cajas, estantería, lector de códigos y tablet para inventarios.',
+            'resumen' => 'Controla stock, movimientos y alertas de stock mínimo.',
+            'detalle' => 'Controla productos, entradas, salidas y existencias de tus almacenes.',
         ],
         [
+            'key' => 'pesaje',
             'titulo' => 'Pesaje y balanzas',
-            'descripcion' => 'Integra balanzas, registra pesajes y administra entradas, salidas, tickets y reportes.',
-            'imagen' => 'pesaje.png',
-            'alt' => 'Balanza conectada a una pantalla de gestión de pesajes',
-            'mensaje' => 'Hola, me interesa un sistema de pesaje e integración con balanzas.',
+            'imagen' => 'ct-v2-pesaje.png',
+            'alt' => 'Balanza industrial con indicador digital y tablet de pesaje.',
+            'resumen' => 'Integra balanzas, registra pesajes y genera tickets.',
+            'detalle' => 'Registra entradas, salidas y pesos netos, con tickets y reportes de pesaje.',
         ],
         [
+            'key' => 'odontologia',
             'titulo' => 'Gestión odontológica',
-            'descripcion' => 'Organiza pacientes, citas, historias clínicas, odontogramas, tratamientos y pagos.',
-            'imagen' => 'odontologia.png',
-            'alt' => 'Consultorio odontológico equipado',
-            'mensaje' => 'Hola, me interesa un sistema de gestión odontológica.',
+            'imagen' => 'ct-v2-odontologia.png',
+            'alt' => 'Sillón dental azul y pantalla con interfaz odontológica ilustrativa.',
+            'resumen' => 'Gestiona pacientes, citas, tratamientos y pagos.',
+            'detalle' => 'Organiza pacientes, citas, historias clínicas, odontogramas, tratamientos y pagos.',
         ],
         [
+            'key' => 'vehicular',
             'titulo' => 'Gestión vehicular',
-            'descripcion' => 'Administra vehículos, propietarios, conductores, documentos, vencimientos y pagos.',
-            'imagen' => 'vehicular.png',
-            'alt' => 'Tablet con sistema de gestión vehicular',
-            'mensaje' => 'Hola, me interesa un sistema de gestión vehicular.',
+            'imagen' => 'ct-v2-vehicular.png',
+            'alt' => 'Camiones blancos junto a un panel ilustrativo de gestión de flotas.',
+            'resumen' => 'Administra vehículos, documentos y mantenimientos.',
+            'detalle' => 'Centraliza vehículos, conductores, documentos, vencimientos y mantenimientos.',
+        ],
+        [
+            'key' => 'web',
+            'titulo' => 'Web y tiendas online',
+            'imagen' => 'ct-v2-web-tiendas.png',
+            'alt' => 'Laptop y celular con tienda online, junto a bolsas azules.',
+            'resumen' => 'Presenta tu negocio y tus productos en internet.',
+            'detalle' => 'Creamos páginas corporativas, catálogos y tiendas adaptadas a celular y escritorio.',
         ],
     ];
-
-    $pasosTech = [
-        [
-            'titulo' => 'Consulta',
-            'descripcion' => 'Conocemos tu idea, cómo trabajas y qué necesitas resolver.',
-        ],
-        [
-            'titulo' => 'Propuesta',
-            'descripcion' => 'Definimos el alcance, los tiempos y una propuesta para tu proyecto.',
-        ],
-        [
-            'titulo' => 'Desarrollo',
-            'descripcion' => 'Diseñamos, implementamos y probamos contigo la solución.',
-        ],
-        [
-            'titulo' => 'Entrega',
-            'descripcion' => 'Ponemos en marcha el sistema y te orientamos en su uso.',
-        ],
-    ];
-
-    $preguntasTech = [
-        [
-            'pregunta' => '¿Cuánto tiempo toma desarrollar un sistema?',
-            'respuesta' => 'Depende de los módulos, las integraciones y el alcance. Después de conocer tu necesidad, te presentamos una propuesta con las etapas y los tiempos estimados.',
-        ],
-        [
-            'pregunta' => '¿Pueden integrar un sistema con mis herramientas actuales?',
-            'respuesta' => 'Sí, evaluamos las posibilidades de integración con tus sistemas, bases de datos, API y equipos. La solución depende de los accesos y las capacidades técnicas disponibles.',
-        ],
-        [
-            'pregunta' => '¿Brindan soporte después de la entrega?',
-            'respuesta' => 'Podemos incluir soporte y mantenimiento. El alcance, la duración y las condiciones se definen en la propuesta de tu proyecto.',
-        ],
-    ];
+    $destacadosTech = collect($sistemasTech)->keyBy('key');
+    $ordenTech = ['inventarios', 'odontologia', 'facturacion', 'pesaje', 'vehicular', 'web'];
 @endphp
 
-<div class="ct-page">
+<div id="ct-tech" class="ct2-page">
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+        <symbol id="ct2-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+        </symbol>
+        <symbol id="ct2-left" viewBox="0 0 24 24">
+            <path d="m15 6-6 6 6 6"/>
+        </symbol>
+        <symbol id="ct2-right" viewBox="0 0 24 24">
+            <path d="m9 6 6 6-6 6"/>
+        </symbol>
+    </svg>
 
-    {{-- PORTADA --}}
-
-    <section class="ct-hero" aria-labelledby="ct-hero-title">
-        <div class="ct-shell">
-            <div class="ct-hero__content">
-
-                <p class="ct-eyebrow">Canvora Tech</p>
-
-                <h1 id="ct-hero-title">
-                    Tecnología que
-                    <span>impulsa tu negocio.</span>
-                </h1>
-
-                <p class="ct-hero__description">
-                    Software a medida, automatización,
-                    infraestructura y soporte.
+    {{-- PORTADA: LA IMAGEN ES UN RECURSO; LOS TEXTOS SON HTML. --}}
+    <section class="ct2-hero" aria-labelledby="ct2-title">
+        <div class="ct2-container ct2-hero-grid">
+            <div class="ct2-hero-copy">
+                <p class="ct2-eyebrow">Canvora Tech</p>
+                <h1 id="ct2-title">¿Qué necesita<br><span>tu negocio?</span></h1>
+                <p class="ct2-description">
+                    Encuentra tu sistema o cuéntanos tu idea.
+                    Desarrollamos, implementamos y damos soporte
+                    a soluciones tecnológicas que impulsan tu empresa.
                 </p>
-
-                <div class="ct-actions">
-                    <a
-                        href="{{ $enlaceCotizar }}"
-                        class="ct-button"
-                        @if($numeroWhatsapp !== '')
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        @endif
-                    >
+                <div class="ct2-actions">
+                    <a class="ct2-button ct2-button-primary" href="{{ $cotizarTech('Hola Canvora Tech, quiero cotizar un proyecto.') }}" target="_blank" rel="noopener noreferrer">
                         Cotizar mi proyecto
-                        <span aria-hidden="true">→</span>
+                        <svg class="ct2-icon" width="22" height="22" aria-hidden="true"><use href="#ct2-arrow"/></svg>
                     </a>
-
-                    <a href="#servicios-tech" class="ct-button ct-button--outline">
-                        Explorar soluciones
-                        <span aria-hidden="true">↓</span>
-                    </a>
+                    <a class="ct2-button ct2-button-outline" href="#ct2-sistemas">Ver todos los sistemas</a>
                 </div>
-
+                <ul class="ct2-benefits" aria-label="Cómo trabajamos">
+                    <li><strong>Soluciones a medida</strong><span>Para empresas de todos los tamaños</span></li>
+                    <li><strong>Implementación guiada</strong><span>Te acompañamos en cada etapa</span></li>
+                    <li><strong>Soporte continuo</strong><span>Tu negocio siempre operativo</span></li>
+                </ul>
+            </div>
+            <div class="ct2-hero-scene" data-ct2-tilt>
+                <div class="ct2-hero-glow" aria-hidden="true"></div>
+                <img class="ct2-hero-image" src="{{ asset('images/tech/ct-v2-portada.png') }}" 
+                alt="Laptop con panel de gestión, cajas, lector de códigos, vehículos y un símbolo dental."
+                 width="1536" height="1024" fetchpriority="high" decoding="async" draggable="false">
             </div>
         </div>
-
-        <img
-            src="{{ asset('images/tech/portada.png') }}"
-            alt="Especialista trabajando en soluciones tecnológicas"
-            class="ct-hero__image"
-            width="1672"
-            height="941"
-            fetchpriority="high"
-        >
     </section>
 
-    {{-- SERVICIOS --}}
-
-    <section
-        id="servicios-tech"
-        class="ct-section ct-services"
-        aria-labelledby="ct-services-title"
-    >
-        <div class="ct-shell">
-
-            <p class="ct-eyebrow">Servicios tecnológicos</p>
-
-            <h2 id="ct-services-title" class="ct-title">
-                Soluciones completas para tu negocio
-            </h2>
-
-            <p class="ct-description">
-                Integramos tecnología, procesos y soporte para ayudarte
-                a trabajar mejor y hacer crecer tu empresa.
-            </p>
-
-            <div class="ct-service-grid">
-                @foreach($serviciosTech as $servicio)
-                    <article class="ct-service-card">
-
-                        <div class="ct-service-card__icon">
-                            <svg
-                                class="ct-icon"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                            >
-                                <path d="{{ $servicio['icono'] }}"></path>
-                            </svg>
+    {{-- SEIS CATEGORÍAS, CON INCLINACIÓN 3D AL INTERACTUAR. --}}
+    <section id="ct2-sistemas" class="ct2-systems" aria-labelledby="ct2-systems-title">
+        <div class="ct2-container">
+            <h2 id="ct2-systems-title" class="ct2-sr-only">Sistemas para tu negocio</h2>
+            <div class="ct2-system-grid">
+                @foreach($sistemasTech as $sistema)
+                    <a class="ct2-system-card" data-ct2-tilt href="{{ $cotizarTech('Hola Canvora Tech, quiero información sobre ' . $sistema['titulo'] . '.') }}" target="_blank" rel="noopener noreferrer">
+                        <div class="ct2-system-image">
+                            <img src="{{ asset('images/tech/' . $sistema['imagen']) }}" alt="{{ $sistema['alt'] }}" width="1536" height="1024" loading="lazy" decoding="async">
                         </div>
-
-                        <h3>{{ $servicio['titulo'] }}</h3>
-
-                        <p>{{ $servicio['descripcion'] }}</p>
-
-                        <div class="ct-service-card__image">
-                            <img
-                                src="{{ asset('images/tech/' . $servicio['imagen']) }}"
-                                alt="{{ $servicio['alt'] }}"
-                                width="1448"
-                                height="1086"
-                                loading="lazy"
-                                decoding="async"
-                            >
+                        <div class="ct2-system-copy">
+                            <h3>{{ $sistema['titulo'] }}</h3>
+                            <p>{{ $sistema['resumen'] }}</p>
+                            <span class="ct2-card-arrow" aria-hidden="true"><svg class="ct2-icon" width="20" height="20"><use href="#ct2-arrow"/></svg></span>
                         </div>
-
-                    </article>
+                    </a>
                 @endforeach
             </div>
-
         </div>
     </section>
 
-    {{-- SISTEMAS / CARRUSEL --}}
-
-    <section
-        id="sistemas-tech"
-        class="ct-section"
-        aria-labelledby="ct-systems-title"
-    >
-        <div class="ct-shell">
-
-            <div class="ct-section-heading">
-                <div>
-                    <p class="ct-eyebrow">Sistemas</p>
-
-                    <h2 id="ct-systems-title" class="ct-title">
-                        Sistemas para tu negocio
-                    </h2>
-
-                    <p class="ct-description">
-                        Desarrollamos y personalizamos soluciones
-                        según los procesos de tu empresa.
-                    </p>
+    {{-- CARRUSEL 3D: CENTRO, IZQUIERDA Y DERECHA. --}}
+    <section class="ct2-featured" aria-labelledby="ct2-featured-title">
+        <div class="ct2-container">
+            <div class="ct2-featured-panel">
+                <div class="ct2-featured-heading">
+                    <p class="ct2-eyebrow">Sistemas destacados</p>
+                    <h2 id="ct2-featured-title">Explora nuestros<br><span>sistemas</span></h2>
+                    <p>Soluciones para organizar y hacer crecer tu negocio.</p>
                 </div>
-
-                <button
-                    type="button"
-                    class="ct-text-button"
-                    id="ct-open-catalog"
-                    aria-haspopup="dialog"
-                    aria-controls="ct-catalog"
-                >
-                    Ver todos los sistemas
-                    <span aria-hidden="true">→</span>
-                </button>
-            </div>
-
-            <div class="ct-carousel-wrapper">
-
-                <button
-                    type="button"
-                    class="ct-carousel-arrow ct-carousel-arrow--previous"
-                    id="ct-previous"
-                    aria-label="Mostrar sistemas anteriores"
-                    aria-controls="ct-systems-carousel"
-                    disabled
-                >
-                    <span aria-hidden="true">‹</span>
-                </button>
-
-                <div
-                    class="ct-carousel"
-                    id="ct-systems-carousel"
-                    role="region"
-                    aria-label="Carrusel de sistemas para tu negocio"
-                    tabindex="0"
-                >
-                    @foreach($sistemasTech as $sistema)
-                        <article class="ct-system-card">
-
-                            <img
-                                src="{{ asset('images/tech/' . $sistema['imagen']) }}"
-                                alt="{{ $sistema['alt'] }}"
-                                class="ct-system-card__image"
-                                width="1448"
-                                height="1086"
-                                loading="lazy"
-                                decoding="async"
-                            >
-
-                            <div class="ct-system-card__body">
-                                <h3>{{ $sistema['titulo'] }}</h3>
-
-                                <p>{{ $sistema['descripcion'] }}</p>
-
-                                <a
-                                    href="{{ $crearEnlaceWhatsapp($sistema['mensaje']) }}"
-                                    class="ct-button"
-                                    aria-label="Consultar sobre {{ $sistema['titulo'] }}"
-                                    @if($numeroWhatsapp !== '')
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    @endif
-                                >
-                                    Consultar sistema
-                                    <span aria-hidden="true">→</span>
-                                </a>
-                            </div>
-
-                        </article>
-                    @endforeach
-                </div>
-
-                <button
-                    type="button"
-                    class="ct-carousel-arrow ct-carousel-arrow--next"
-                    id="ct-next"
-                    aria-label="Mostrar más sistemas"
-                    aria-controls="ct-systems-carousel"
-                >
-                    <span aria-hidden="true">›</span>
-                </button>
-
-            </div>
-
-<div
-    class="ct-carousel-dots"
-    id="ct-carousel-dots"
-    role="group"
-    aria-label="Posiciones del carrusel"
-></div>
-
-            <p class="ct-systems-note">
-                ¿Tu actividad necesita algo distinto?
-                También desarrollamos soluciones a medida.
-            </p>
-
-        </div>
-    </section>
-
-    {{-- SOLUCIÓN A MEDIDA --}}
-
-    <section class="ct-custom" aria-labelledby="ct-custom-title">
-        <div class="ct-shell">
-            <div class="ct-custom__content">
-
-                <p class="ct-eyebrow">Soluciones a tu medida</p>
-
-                <h2 id="ct-custom-title" class="ct-title">
-                    ¿Necesitas un sistema diferente?
-
-                    <span class="ct-custom__highlight">
-                        Diseñamos una solución a tu medida.
-                    </span>
-                </h2>
-
-                <p class="ct-description">
-                    Cuéntanos tu idea o proceso. Lo convertimos en
-                    una herramienta que se adapte a tu negocio.
-                </p>
-
-                <a
-                    href="{{ $enlaceCotizar }}"
-                    class="ct-button"
-                    @if($numeroWhatsapp !== '')
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    @endif
-                >
-                    Cotizar mi proyecto
-                    <span aria-hidden="true">→</span>
-                </a>
-
-            </div>
-        </div>
-
-        <img
-            src="{{ asset('images/tech/medida.png') }}"
-            alt="Concepto de un sistema personalizado con paneles de información"
-            class="ct-custom__image"
-            width="1672"
-            height="941"
-            loading="lazy"
-            decoding="async"
-        >
-    </section>
-
-    {{-- PROCESO --}}
-
-    <section
-        id="proceso-tech"
-        class="ct-section ct-process"
-        aria-labelledby="ct-process-title"
-    >
-        <div class="ct-shell">
-
-            <p class="ct-eyebrow">Cómo trabajamos</p>
-
-            <h2 id="ct-process-title" class="ct-title">
-                Un proceso simple y transparente
-            </h2>
-
-            <div class="ct-process-grid">
-                @foreach($pasosTech as $paso)
-                    <article class="ct-process-step">
-
-                        <span class="ct-process-step__number" aria-hidden="true">
-                            {{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
-                        </span>
-
-                        <div>
-                            <h3>{{ $paso['titulo'] }}</h3>
-                            <p>{{ $paso['descripcion'] }}</p>
-                        </div>
-
-                    </article>
-                @endforeach
-            </div>
-
-        </div>
-    </section>
-
-    {{-- PREGUNTAS FRECUENTES --}}
-
-    <section class="ct-section" aria-labelledby="ct-faq-title">
-        <div class="ct-shell">
-            <div class="ct-faq-layout">
-
-                <div>
-                    <p class="ct-eyebrow">Preguntas frecuentes</p>
-
-                    <h2 id="ct-faq-title" class="ct-title">
-                        Resolvemos tus dudas
-                    </h2>
-
-                    <p class="ct-description">
-                        Conoce cómo podemos ayudarte antes
-                        de iniciar tu proyecto.
-                    </p>
-                </div>
-
-                <div class="ct-faq-list">
-                    @foreach($preguntasTech as $pregunta)
-                        <details class="ct-faq-item">
-                            <summary>
-                                {{ $pregunta['pregunta'] }}
-                            </summary>
-
-                            <p>{{ $pregunta['respuesta'] }}</p>
-                        </details>
-                    @endforeach
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    {{-- CONTACTO --}}
-
-    <section
-        id="contacto"
-        class="ct-contact"
-        aria-labelledby="ct-contact-title"
-    >
-        <div class="ct-shell">
-            <div class="ct-contact__content">
-
-                <p class="ct-eyebrow">Cuéntanos tu proyecto</p>
-
-                <h2 id="ct-contact-title" class="ct-title">
-                    Hablemos de tu proyecto
-                </h2>
-
-                <p class="ct-description">
-                    Cuéntanos qué necesitas y te ayudaremos
-                    a encontrar una solución para tu negocio.
-                </p>
-
-                @if($numeroWhatsapp !== '')
-                    <div class="ct-actions">
-                        <a
-                            href="{{ $enlaceCotizar }}"
-                            class="ct-button ct-button--whatsapp"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Escríbenos por WhatsApp
-                            <span aria-hidden="true">→</span>
-                        </a>
+                <div class="ct2-carousel" data-ct2-carousel role="region" aria-roledescription="carrusel" aria-label="Sistemas destacados" tabindex="0">
+                    <button class="ct2-carousel-arrow ct2-carousel-prev" type="button" data-ct2-prev aria-label="Sistema anterior">
+                        <svg class="ct2-icon" width="24" height="24" aria-hidden="true"><use href="#ct2-left"/></svg>
+                    </button>
+                    <div class="ct2-carousel-stage" data-ct2-stage>
+                        @foreach($ordenTech as $key)
+                            @php
+                                $sistema = $destacadosTech[$key];
+                                $posicion = $loop->index === 1 ? 'is-center' : ($loop->index === 0 ? 'is-left' : ($loop->index === 2 ? 'is-right' : 'is-hidden'));
+                            @endphp
+                            <article class="ct2-feature-card {{ $posicion }}" data-ct2-slide="{{ $key }}" role="group" aria-roledescription="diapositiva" aria-label="{{ $loop->iteration }} de {{ count($ordenTech) }}: {{ $sistema['titulo'] }}" aria-hidden="{{ $loop->index > 2 ? 'true' : 'false' }}" @if($loop->index > 2) inert @endif>
+                                <img src="{{ asset('images/tech/' . $sistema['imagen']) }}" alt="{{ $sistema['alt'] }}" width="1536" height="1024" loading="lazy" decoding="async">
+                                <div class="ct2-feature-copy">
+                                    <h3>{{ $sistema['titulo'] }}</h3>
+                                    <p>{{ $sistema['detalle'] }}</p>
+                                    <a class="ct2-button ct2-feature-link" href="{{ $cotizarTech('Hola Canvora Tech, quiero conocer el sistema de ' . $sistema['titulo'] . '.') }}" target="_blank" rel="noopener noreferrer" @if($loop->index > 2) tabindex="-1" @endif>
+                                        Consultar sistema
+                                        <svg class="ct2-icon" width="20" height="20" aria-hidden="true"><use href="#ct2-arrow"/></svg>
+                                    </a>
+                                </div>
+                            </article>
+                        @endforeach
                     </div>
-                @endif
-
+                    <button class="ct2-carousel-arrow ct2-carousel-next" type="button" data-ct2-next aria-label="Sistema siguiente">
+                        <svg class="ct2-icon" width="24" height="24" aria-hidden="true"><use href="#ct2-right"/></svg>
+                    </button>
+                    <div class="ct2-carousel-dots" aria-label="Seleccionar sistema">
+                        @foreach($ordenTech as $key)
+                            <button type="button" data-ct2-select="{{ $key }}" class="{{ $loop->index === 1 ? 'is-active' : '' }}" aria-label="Mostrar {{ $destacadosTech[$key]['titulo'] }}" aria-pressed="{{ $loop->index === 1 ? 'true' : 'false' }}"></button>
+                        @endforeach
+                    </div>
+                    <p class="ct2-sr-only" data-ct2-status aria-live="polite"></p>
+                </div>
             </div>
         </div>
-
-        <img
-            src="{{ asset('images/tech/contacto.png') }}"
-            alt="Concepto de oficina tecnológica con identidad Canvora Tech"
-            class="ct-contact__image"
-            width="1672"
-            height="941"
-            loading="lazy"
-            decoding="async"
-        >
     </section>
 
-    {{-- CATÁLOGO COMPLETO --}}
-
-    <dialog
-        id="ct-catalog"
-        class="ct-catalog"
-        aria-labelledby="ct-catalog-title"
-    >
-        <div class="ct-catalog__header">
-            <div>
-                <p class="ct-eyebrow">Canvora Tech</p>
-
-                <h2 id="ct-catalog-title" class="ct-title">
-                    Sistemas para tu negocio
-                </h2>
-
-                <p class="ct-description">
-                    Explora nuestras líneas de desarrollo.
-                </p>
+    {{-- ANTIVIRUS, MANTENIMIENTO Y SOPORTE. --}}
+    <section class="ct2-support" aria-labelledby="ct2-support-title">
+        <div class="ct2-container">
+            <div class="ct2-support-panel">
+                <img class="ct2-support-image" src="{{ asset('images/tech/ct-v2-antivirus.png') }}" alt="Escudo azul de protección junto a una laptop y un servidor." width="1536" height="1024" loading="lazy" decoding="async">
+                <div class="ct2-support-copy">
+                    <p class="ct2-eyebrow">Soporte y protección</p>
+                    <h2 id="ct2-support-title">Tu negocio siempre seguro y operativo</h2>
+                    <p>Instalación de antivirus, mantenimiento preventivo y soporte técnico especializado.</p>
+                </div>
+                <ul class="ct2-support-services">
+                    <li><strong>Instalación de antivirus</strong><span>Protección para tus equipos</span></li>
+                    <li><strong>Mantenimiento</strong><span>Cuida el rendimiento de tu sistema</span></li>
+                    <li><strong>Soporte técnico</strong><span>Ayuda para resolver incidencias</span></li>
+                </ul>
+                <a class="ct2-button ct2-button-primary" href="{{ $cotizarTech('Hola Canvora Tech, necesito antivirus, mantenimiento o soporte técnico.') }}" target="_blank" rel="noopener noreferrer">Consultar servicio</a>
             </div>
-
-            <button
-                type="button"
-                class="ct-catalog__close"
-                id="ct-close-catalog"
-                aria-label="Cerrar catálogo"
-            >
-                <span aria-hidden="true">×</span>
-            </button>
         </div>
+    </section>
 
-        <div class="ct-catalog-grid">
-            @foreach($sistemasTech as $sistema)
-                <article class="ct-system-card">
-
-                    <img
-                        src="{{ asset('images/tech/' . $sistema['imagen']) }}"
-                        alt="{{ $sistema['alt'] }}"
-                        class="ct-system-card__image"
-                        width="1448"
-                        height="1086"
-                        loading="lazy"
-                        decoding="async"
-                    >
-
-                    <div class="ct-system-card__body">
-                        <h3>{{ $sistema['titulo'] }}</h3>
-
-                        <p>{{ $sistema['descripcion'] }}</p>
-
-                        <a
-                            href="{{ $crearEnlaceWhatsapp($sistema['mensaje']) }}"
-                            class="ct-button"
-                            @if($numeroWhatsapp !== '')
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            @endif
-                        >
-                            Consultar sistema
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </div>
-
-                </article>
-            @endforeach
+    {{-- DESARROLLO A MEDIDA Y PROCESO. --}}
+    <section id="ct2-medida" class="ct2-custom" aria-labelledby="ct2-custom-title">
+        <div class="ct2-container">
+            <div class="ct2-custom-panel">
+                <div class="ct2-custom-scene" data-ct2-tilt>
+                    <img src="{{ asset('images/tech/ct-v2-medida.png') }}" alt="Laptop con editor de código e ilustraciones de nube y base de datos." width="1536" height="1024" loading="lazy" decoding="async">
+                </div>
+                <div class="ct2-custom-copy">
+                    <p class="ct2-eyebrow">Desarrollo a medida</p>
+                    <h2 id="ct2-custom-title">¿Necesitas otro sistema?<br><span>Lo desarrollamos a tu medida.</span></h2>
+                    <p>Cuéntanos tu idea y la convertimos en una solución para tu negocio.</p>
+                    <a class="ct2-button ct2-button-primary" href="{{ $cotizarTech('Hola Canvora Tech, quiero desarrollar un sistema a medida.') }}" target="_blank" rel="noopener noreferrer">Cotizar desarrollo</a>
+                </div>
+                <ol class="ct2-process" aria-label="Proceso de desarrollo">
+                    <li><span class="ct2-step-number" aria-hidden="true">1</span><strong>Consulta</strong><p>Nos cuentas tu idea y tus necesidades.</p></li>
+                    <li><span class="ct2-step-number" aria-hidden="true">2</span><strong>Propuesta</strong><p>Definimos la solución y su alcance.</p></li>
+                    <li><span class="ct2-step-number" aria-hidden="true">3</span><strong>Desarrollo</strong><p>Construimos y validamos tu sistema.</p></li>
+                    <li><span class="ct2-step-number" aria-hidden="true">4</span><strong>Entrega</strong><p>Implementamos y te acompañamos.</p></li>
+                </ol>
+            </div>
         </div>
-
-        <p class="ct-systems-note">
-            También podemos desarrollar un sistema específico
-            para los procesos de tu empresa.
-        </p>
-    </dialog>
-
+    </section>
 </div>
-
-<script>
-(() => {
-    'use strict';
-
-    function iniciarTech() {
-        const carousel = document.getElementById('ct-systems-carousel');
-        const previous = document.getElementById('ct-previous');
-        const next = document.getElementById('ct-next');
-        const dots = document.getElementById('ct-carousel-dots');
-
-        const catalog = document.getElementById('ct-catalog');
-        const openCatalog = document.getElementById('ct-open-catalog');
-        const closeCatalog = document.getElementById('ct-close-catalog');
-
-        const reducedMotion = window.matchMedia(
-            '(prefers-reduced-motion: reduce)'
-        );
-
-        /* CARRUSEL */
-
-        if (carousel) {
-            const cards = [
-                ...carousel.querySelectorAll('.ct-system-card')
-            ];
-
-            let positions = [0];
-            let active = 0;
-            let timer = null;
-            let touching = false;
-            let lastInteraction = 0;
-
-            function update() {
-                active = positions.reduce((best, position, index) => {
-                    const distance = Math.abs(
-                        position - carousel.scrollLeft
-                    );
-
-                    const bestDistance = Math.abs(
-                        positions[best] - carousel.scrollLeft
-                    );
-
-                    return distance < bestDistance ? index : best;
-                }, 0);
-
-                const canMove = positions.length > 1;
-
-                if (previous) previous.disabled = !canMove;
-                if (next) next.disabled = !canMove;
-
-                if (dots) {
-                    [...dots.children].forEach((dot, index) => {
-                        dot.setAttribute(
-                            'aria-current',
-                            String(index === active)
-                        );
-                    });
-                }
-            }
-
-            function go(index) {
-                const target = (
-                    index + positions.length
-                ) % positions.length;
-
-                carousel.scrollTo({
-                    left: positions[target],
-                    behavior: reducedMotion.matches
-                        ? 'instant'
-                        : 'smooth'
-                });
-            }
-
-            function start() {
-                window.clearInterval(timer);
-
-                timer = window.setInterval(() => {
-                    const rect = carousel.getBoundingClientRect();
-
-                    const keyboardFocus =
-                        carousel.matches(':focus-visible') ||
-                        carousel.querySelector(':focus-visible');
-
-                    const shouldWait =
-                        document.hidden ||
-                        touching ||
-                        catalog?.open ||
-                        reducedMotion.matches ||
-                        keyboardFocus ||
-                        rect.bottom <= 0 ||
-                        rect.top >= window.innerHeight ||
-                        Date.now() - lastInteraction < 4000 ||
-                        positions.length <= 1;
-
-                    if (shouldWait) return;
-
-                    update();
-                    go(active + 1);
-                }, 4000);
-            }
-
-            function manualGo(index) {
-                lastInteraction = Date.now();
-                go(index);
-                start();
-            }
-
-            function layout() {
-                if (!cards.length) return;
-
-                const max = Math.max(
-                    0,
-                    carousel.scrollWidth - carousel.clientWidth
-                );
-
-                const firstLeft = cards[0]
-                    .getBoundingClientRect().left;
-
-                positions = [0];
-
-                cards.forEach(card => {
-                    const position = Math.min(
-                        max,
-                        Math.max(
-                            0,
-                            card.getBoundingClientRect().left - firstLeft
-                        )
-                    );
-
-                    const exists = positions.some(
-                        saved => Math.abs(saved - position) < 2
-                    );
-
-                    if (!exists) positions.push(position);
-                });
-
-                const hasEnd = positions.some(
-                    saved => Math.abs(saved - max) < 2
-                );
-
-                if (!hasEnd) positions.push(max);
-
-                if (dots) {
-                    dots.replaceChildren();
-                    dots.hidden = positions.length < 2;
-
-                    positions.forEach((position, index) => {
-                        const button = document.createElement('button');
-
-                        button.type = 'button';
-                        button.className = 'ct-carousel-dot';
-
-                        button.setAttribute(
-                            'aria-label',
-                            'Ver posición ' + (index + 1)
-                        );
-
-                        button.setAttribute(
-                            'aria-controls',
-                            carousel.id
-                        );
-
-                        button.addEventListener('click', () => {
-                            manualGo(index);
-                        });
-
-                        dots.appendChild(button);
-                    });
-                }
-
-                update();
-            }
-
-            previous?.addEventListener('click', () => {
-                update();
-                manualGo(active - 1);
-            });
-
-            next?.addEventListener('click', () => {
-                update();
-                manualGo(active + 1);
-            });
-
-            carousel.addEventListener(
-                'scroll',
-                update,
-                { passive: true }
-            );
-
-            carousel.addEventListener('pointerdown', () => {
-                touching = true;
-                lastInteraction = Date.now();
-            }, { passive: true });
-
-            function finishTouch() {
-                if (!touching) return;
-
-                touching = false;
-                lastInteraction = Date.now();
-                start();
-            }
-
-            window.addEventListener(
-                'pointerup',
-                finishTouch,
-                { passive: true }
-            );
-
-            window.addEventListener(
-                'pointercancel',
-                finishTouch,
-                { passive: true }
-            );
-
-            carousel.addEventListener('keydown', event => {
-                if (event.target !== carousel) return;
-
-                if (
-                    event.key === 'ArrowRight' ||
-                    event.key === 'ArrowLeft'
-                ) {
-                    event.preventDefault();
-                    update();
-
-                    manualGo(
-                        active + (
-                            event.key === 'ArrowRight' ? 1 : -1
-                        )
-                    );
-                }
-            });
-
-            if ('ResizeObserver' in window) {
-                new ResizeObserver(layout).observe(carousel);
-            } else {
-                window.addEventListener('resize', layout);
-            }
-
-            document.fonts?.ready.then(layout);
-
-            document.addEventListener('visibilitychange', () => {
-                touching = false;
-                start();
-            });
-
-            layout();
-            start();
-        }
-
-        /* CATÁLOGO: FUNCIONA INDEPENDIENTEMENTE DEL CARRUSEL */
-
-        if (catalog && openCatalog && closeCatalog) {
-            let oldOverflow = '';
-
-            openCatalog.addEventListener('click', () => {
-                if (catalog.open) return;
-
-                oldOverflow = document.body.style.overflow;
-
-                catalog.showModal();
-                document.body.style.overflow = 'hidden';
-            });
-
-            closeCatalog.addEventListener('click', () => {
-                catalog.close();
-            });
-
-            catalog.addEventListener('close', () => {
-                document.body.style.overflow = oldOverflow;
-                openCatalog.focus({ preventScroll: true });
-            });
-
-            catalog.addEventListener('click', event => {
-                if (event.target !== catalog) return;
-
-                const rect = catalog.getBoundingClientRect();
-
-                const outside =
-                    event.clientX < rect.left ||
-                    event.clientX > rect.right ||
-                    event.clientY < rect.top ||
-                    event.clientY > rect.bottom;
-
-                if (outside) catalog.close();
-            });
-
-            catalog.querySelectorAll(
-                'a[href="#contacto"]'
-            ).forEach(link => {
-                link.addEventListener('click', () => {
-                    catalog.close();
-                });
-            });
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener(
-            'DOMContentLoaded',
-            iniciarTech,
-            { once: true }
-        );
-    } else {
-        iniciarTech();
-    }
-})();
-</script>
-
 @endsection

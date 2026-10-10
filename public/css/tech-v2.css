@@ -1,0 +1,1642 @@
+/* =====================================================
+   CANVORA TECH V2
+   Solo afecta el contenido dentro de #ct-tech.
+   Cabecera, footer y WhatsApp usan sus estilos compartidos.
+   ===================================================== */
+
+#ct-tech {
+    --ct2-navy: #061737;
+    --ct2-blue: #1d4ed8;
+    --ct2-blue-dark: #153da9;
+    --ct2-muted: #526787;
+    --ct2-line: #dce8fa;
+    --ct2-surface: #f2f7ff;
+
+    width: 100%;
+    color: var(--ct2-navy);
+    background: #fff;
+
+    font-family:
+        Manrope,
+        Inter,
+        system-ui,
+        -apple-system,
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1.5;
+
+    overflow: hidden;
+    overflow: clip;
+    isolation: isolate;
+}
+
+#ct-tech *,
+#ct-tech *::before,
+#ct-tech *::after {
+    box-sizing: border-box;
+}
+
+#ct-tech :where(h1, h2, h3, p, ul, ol) {
+    margin: 0;
+}
+
+#ct-tech :where(ul, ol) {
+    padding: 0;
+    list-style: none;
+}
+
+#ct-tech a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#ct-tech button {
+    font: inherit;
+    cursor: pointer;
+}
+
+#ct-tech :where(a, button) {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+#ct-tech :where(a, button):focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 5px;
+}
+
+#ct-tech img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+#ct-tech .ct2-container {
+    width: min(1440px, calc(100% - 64px));
+    margin-inline: auto;
+}
+
+#ct-tech .ct2-icon {
+    display: block;
+    flex-shrink: 0;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#ct-tech .ct2-sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+#ct-tech :where(#ct2-sistemas, #ct2-medida) {
+    scroll-margin-top: 110px;
+}
+
+/* =====================================================
+   TEXTOS Y BOTONES
+   ===================================================== */
+
+#ct-tech .ct2-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 16px;
+    color: var(--ct2-blue);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+#ct-tech .ct2-eyebrow::before {
+    content: "";
+
+    width: 32px;
+    height: 2px;
+    flex-shrink: 0;
+
+    background: currentColor;
+}
+
+#ct-tech .ct2-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 46px;
+    padding: 12px 20px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+
+    transition:
+        background .2s,
+        border-color .2s,
+        box-shadow .2s;
+}
+
+#ct-tech .ct2-button-primary {
+    color: #fff;
+    background: var(--ct2-blue);
+    box-shadow: 0 8px 20px rgb(29 78 216 / 14%);
+}
+
+#ct-tech .ct2-button-primary:hover {
+    background: var(--ct2-blue-dark);
+}
+
+#ct-tech .ct2-button-outline {
+    color: var(--ct2-blue);
+    border-color: #a8c6ff;
+    background: rgb(255 255 255 / 75%);
+}
+
+#ct-tech .ct2-button-outline:hover {
+    background: #e9f1ff;
+    border-color: var(--ct2-blue);
+}
+
+/* =====================================================
+   PORTADA
+   ===================================================== */
+
+#ct-tech .ct2-hero {
+    position: relative;
+
+    background:
+        radial-gradient(
+            ellipse at 85% 40%,
+            #dceaff 0,
+            #f1f7ff 50%,
+            #fff 85%
+        );
+}
+
+#ct-tech .ct2-hero-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, .43fr)
+        minmax(0, .57fr);
+
+    align-items: center;
+    gap: 16px;
+
+    padding-block: 28px 20px;
+}
+
+#ct-tech .ct2-hero-copy {
+    position: relative;
+    z-index: 2;
+
+    min-width: 0;
+    padding-block: 18px;
+}
+
+#ct-tech .ct2-hero h1 {
+    max-width: 580px;
+
+    font-size: clamp(38px, 4.1vw, 62px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -.055em;
+}
+
+#ct-tech :where(
+    .ct2-hero h1,
+    .ct2-featured-heading h2,
+    .ct2-custom-copy h2
+) span {
+    color: var(--ct2-blue);
+}
+
+#ct-tech .ct2-description {
+    max-width: 520px;
+    margin-top: 20px;
+
+    color: var(--ct2-muted);
+
+    font-size: clamp(15px, 1.25vw, 18px);
+    line-height: 1.6;
+}
+
+#ct-tech .ct2-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+#ct-tech .ct2-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+
+    margin-top: 26px;
+}
+
+#ct-tech .ct2-benefits li {
+    position: relative;
+
+    min-width: 0;
+    padding-left: 12px;
+
+    border-left: 2px solid #8fb7ff;
+}
+
+#ct-tech .ct2-benefits strong {
+    display: block;
+    margin-bottom: 4px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+#ct-tech .ct2-benefits span {
+    display: block;
+    color: var(--ct2-muted);
+
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+/* Escena de la laptop */
+
+#ct-tech .ct2-hero-scene {
+    position: relative;
+    z-index: 1;
+
+    min-width: 0;
+
+    perspective: 1400px;
+  /*  transform-style: preserve-3d;*/
+}
+
+#ct-tech .ct2-hero-glow {
+    position: absolute;
+    inset: 12% 2% 4%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            #b9d7ff,
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+#ct-tech .ct2-hero-image {
+    position: relative;
+
+    width: 110%;
+    max-width: none;
+    margin-left: -5%;
+
+    transform:
+        rotateX(var(--ct2-rx, 0deg))
+        rotateY(var(--ct2-ry, 0deg));
+
+    transform-origin: center;
+    transition: transform .3s ease;
+}
+
+/* =====================================================
+   SEIS CATEGORÍAS
+   ===================================================== */
+
+#ct-tech .ct2-systems {
+    position: relative;
+    z-index: 2;
+
+    padding-block: 16px 24px;
+}
+
+#ct-tech .ct2-system-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px;
+
+    perspective: 1600px;
+}
+
+#ct-tech .ct2-system-card {
+    display: block;
+
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--ct2-line);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #edf5ff,
+            #fff 80%
+        );
+
+    box-shadow: 0 4px 12px rgb(6 23 55 / 3%);
+
+    transform:
+        rotateX(var(--ct2-rx, 0deg))
+        rotateY(var(--ct2-ry, 0deg));
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .25s ease,
+        border-color .25s,
+        box-shadow .25s;
+}
+
+#ct-tech .ct2-system-image {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: #f1f7ff;
+}
+
+#ct-tech .ct2-system-image img {
+    height: 100%;
+    object-fit: cover;
+}
+
+#ct-tech .ct2-system-copy {
+    position: relative;
+
+    min-height: 112px;
+    padding: 15px 34px 16px 14px;
+}
+
+#ct-tech .ct2-system-copy h3 {
+    margin-bottom: 7px;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -.025em;
+}
+
+#ct-tech .ct2-system-copy p {
+    color: var(--ct2-muted);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+#ct-tech .ct2-card-arrow {
+    position: absolute;
+    right: 9px;
+    bottom: 16px;
+
+    display: grid;
+    place-items: center;
+
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid #c5dafe;
+    border-radius: 50%;
+
+    color: var(--ct2-blue);
+    background: #fff;
+}
+
+#ct-tech .ct2-card-arrow .ct2-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #ct-tech .ct2-system-card:hover {
+        border-color: #9abfff;
+
+        box-shadow:
+            0 14px 28px rgb(29 78 216 / 12%);
+
+        transform:
+            translateY(-5px)
+            rotateX(var(--ct2-rx, 3deg))
+            rotateY(var(--ct2-ry, -4deg));
+    }
+}
+
+/* =====================================================
+   CARRUSEL CON PERSPECTIVA 3D
+   ===================================================== */
+
+#ct-tech .ct2-featured {
+    padding-block: 0 20px;
+}
+
+#ct-tech .ct2-featured-panel {
+    display: grid;
+
+    grid-template-columns:
+        minmax(210px, .25fr)
+        minmax(0, .75fr);
+
+    align-items: center;
+    gap: 14px;
+
+    padding: 24px 22px;
+
+    border: 1px solid #e9f1ff;
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            115deg,
+            #f3f8ff,
+            #e7f2ff
+        );
+}
+
+#ct-tech .ct2-featured-heading {
+    padding-left: 12px;
+}
+
+#ct-tech .ct2-featured-heading .ct2-eyebrow {
+    font-size: 9px;
+    letter-spacing: .09em;
+}
+
+#ct-tech .ct2-featured-heading h2 {
+    font-size: clamp(26px, 2.4vw, 36px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -.045em;
+}
+
+#ct-tech .ct2-featured-heading > p:last-child {
+    max-width: 235px;
+    margin-top: 14px;
+
+    color: var(--ct2-muted);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#ct-tech .ct2-carousel {
+    position: relative;
+    min-width: 0;
+
+    padding-inline: 40px;
+    outline-offset: 6px;
+}
+
+#ct-tech .ct2-carousel-stage {
+    position: relative;
+
+    width: 100%;
+    height: 360px;
+
+    perspective: 1400px;
+    transform-style: preserve-3d;
+    touch-action: pan-y;
+}
+
+#ct-tech .ct2-feature-card {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+
+    width: 38%;
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid #dbe7fa;
+    border-radius: 14px;
+
+    background: #fff;
+    box-shadow: 0 12px 26px rgb(19 55 109 / 10%);
+
+    transform-origin: center;
+
+    transition:
+        transform .55s cubic-bezier(.22, .7, .25, 1),
+        opacity .4s,
+        visibility .4s,
+        box-shadow .4s;
+}
+
+#ct-tech .ct2-feature-card > img {
+    aspect-ratio: 3 / 2;
+    height: auto;
+    object-fit: cover;
+}
+
+#ct-tech .ct2-feature-copy {
+    padding: 15px 16px 16px;
+}
+
+#ct-tech .ct2-feature-copy h3 {
+    margin-bottom: 7px;
+
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -.03em;
+}
+
+#ct-tech .ct2-feature-copy p {
+    min-height: 63px;
+    margin-bottom: 13px;
+
+    color: var(--ct2-muted);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#ct-tech .ct2-feature-link {
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+
+    color: var(--ct2-blue);
+    background: #edf4ff;
+
+    font-size: 12px;
+}
+
+/* Tarjeta principal */
+
+#ct-tech .ct2-feature-card.is-center {
+    z-index: 3;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateZ(35px);
+
+    box-shadow:
+        0 16px 30px rgb(19 55 109 / 14%);
+}
+
+#ct-tech .ct2-feature-card.is-center .ct2-feature-link {
+    color: #fff;
+    background: var(--ct2-blue);
+}
+
+#ct-tech .ct2-feature-card.is-center .ct2-feature-link:hover {
+    background: var(--ct2-blue-dark);
+}
+
+/* Tarjeta lateral izquierda */
+
+#ct-tech .ct2-feature-card.is-left {
+    z-index: 2;
+
+    opacity: .96;
+    visibility: visible;
+
+    transform:
+        translateX(-140%)
+        rotateY(15deg)
+        scale(.86);
+}
+
+/* Tarjeta lateral derecha */
+
+#ct-tech .ct2-feature-card.is-right {
+    z-index: 2;
+
+    opacity: .96;
+    visibility: visible;
+
+    transform:
+        translateX(40%)
+        rotateY(-15deg)
+        scale(.86);
+}
+
+/* Tarjetas fuera de escena */
+
+#ct-tech .ct2-feature-card.is-hidden {
+    z-index: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform:
+        translateX(-50%)
+        translateZ(-80px)
+        scale(.75);
+}
+
+/* Flechas del carrusel */
+
+#ct-tech .ct2-carousel-arrow {
+    position: absolute;
+    top: 42%;
+    z-index: 10;
+
+    display: grid;
+    place-items: center;
+
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    border: 1px solid #d4e5ff;
+    border-radius: 50%;
+
+    color: var(--ct2-blue);
+    background: #fff;
+
+    box-shadow: 0 5px 15px rgb(6 23 55 / 7%);
+
+    transition: background .2s;
+}
+
+#ct-tech .ct2-carousel-arrow:hover {
+    background: #e8f1ff;
+}
+
+#ct-tech .ct2-carousel-prev {
+    left: 0;
+}
+
+#ct-tech .ct2-carousel-next {
+    right: 0;
+}
+
+/* Indicadores */
+
+#ct-tech .ct2-carousel-dots {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    margin-top: 4px;
+}
+
+#ct-tech .ct2-carousel-dots button {
+    display: grid;
+    place-items: center;
+
+    width: 28px;
+    height: 30px;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+}
+
+#ct-tech .ct2-carousel-dots button::before {
+    content: "";
+
+    width: 8px;
+    height: 8px;
+
+    border: 1px solid #a1bfff;
+    border-radius: 50%;
+
+    background: transparent;
+
+    transition:
+        background .2s,
+        transform .2s;
+}
+
+#ct-tech .ct2-carousel-dots button.is-active::before {
+    border-color: var(--ct2-blue);
+    background: var(--ct2-blue);
+    transform: scale(1.15);
+}
+
+/* =====================================================
+   SOPORTE Y PROTECCIÓN
+   ===================================================== */
+
+#ct-tech .ct2-support {
+    padding-block: 0 18px;
+}
+
+#ct-tech .ct2-support-panel {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        145px
+        minmax(0, 1.35fr)
+        minmax(0, 1.4fr)
+        auto;
+
+    align-items: center;
+    gap: 18px;
+
+    min-height: 150px;
+    padding: 20px 22px;
+
+    border-radius: 19px;
+    color: #fff;
+
+    background:
+        linear-gradient(
+            110deg,
+            #061737,
+            #123d77 58%,
+            #061737
+        );
+}
+
+#ct-tech .ct2-support-image {
+    position: relative;
+
+    width: 165px;
+    max-width: none;
+    margin-left: -12px;
+
+    object-fit: contain;
+}
+
+#ct-tech .ct2-support .ct2-eyebrow {
+    margin-bottom: 9px;
+    color: #8dd5ff;
+
+    font-size: 9px;
+    letter-spacing: .12em;
+}
+
+#ct-tech .ct2-support-copy h2 {
+    margin-bottom: 8px;
+
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+
+#ct-tech .ct2-support-copy p {
+    color: #d3e3fa;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#ct-tech .ct2-support-services {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+#ct-tech .ct2-support-services li {
+    height: 100%;
+    padding: 13px 10px;
+
+    border: 1px solid rgb(255 255 255 / 22%);
+    border-radius: 12px;
+
+    background: rgb(255 255 255 / 3%);
+}
+
+#ct-tech .ct2-support-services strong {
+    display: block;
+    margin-bottom: 6px;
+
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+#ct-tech .ct2-support-services span {
+    display: block;
+    color: #c9ddf7;
+
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+#ct-tech .ct2-support .ct2-button {
+    min-width: 140px;
+    padding-inline: 14px;
+
+    font-size: 12px;
+}
+
+/* =====================================================
+   DESARROLLO A MEDIDA
+   ===================================================== */
+
+#ct-tech .ct2-custom {
+    padding-block: 0 30px;
+}
+
+#ct-tech .ct2-custom-panel {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, .22fr)
+        minmax(0, .31fr)
+        minmax(0, .47fr);
+
+    align-items: center;
+    gap: 24px;
+
+    padding: 24px;
+
+    border: 1px solid #e9f1ff;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            115deg,
+            #ecf5ff,
+            #fff
+        );
+}
+
+#ct-tech .ct2-custom-scene {
+    min-width: 0;
+    perspective: 1200px;
+}
+
+#ct-tech .ct2-custom-scene img {
+    transform:
+        rotateX(var(--ct2-rx, 0deg))
+        rotateY(var(--ct2-ry, 0deg));
+
+    transition: transform .3s ease;
+}
+
+#ct-tech .ct2-custom-copy .ct2-eyebrow {
+    margin-bottom: 10px;
+
+    font-size: 9px;
+    letter-spacing: .1em;
+}
+
+#ct-tech .ct2-custom-copy h2 {
+    margin-bottom: 10px;
+
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+
+#ct-tech .ct2-custom-copy > p:not(.ct2-eyebrow) {
+    margin-bottom: 16px;
+
+    color: var(--ct2-muted);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#ct-tech .ct2-custom-copy .ct2-button {
+    min-height: 40px;
+    padding: 10px 16px;
+
+    font-size: 12px;
+}
+
+/* Proceso */
+
+#ct-tech .ct2-process {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+#ct-tech .ct2-process li {
+    position: relative;
+    min-width: 0;
+}
+
+#ct-tech .ct2-process li:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+    top: 22px;
+    left: 50px;
+    right: -8px;
+
+    border-top: 1px dashed #b9cff4;
+}
+
+#ct-tech .ct2-step-number {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+    margin-bottom: 12px;
+
+    border: 1px solid #bcd5ff;
+    border-radius: 50%;
+
+    color: var(--ct2-blue);
+    background: #fff;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+#ct-tech .ct2-process strong {
+    display: block;
+    margin-bottom: 6px;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+#ct-tech .ct2-process p {
+    color: var(--ct2-muted);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* =====================================================
+   ESCRITORIO MEDIANO
+   ===================================================== */
+
+@media (max-width: 1250px) {
+    #ct-tech .ct2-system-grid {
+        gap: 10px;
+    }
+
+    #ct-tech .ct2-system-copy {
+        min-height: 126px;
+        padding-left: 11px;
+    }
+
+    #ct-tech .ct2-system-copy h3 {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-featured-panel {
+        grid-template-columns: 210px minmax(0, 1fr);
+        padding-inline: 18px;
+        gap: 6px;
+    }
+
+    #ct-tech .ct2-carousel-stage {
+        height: 350px;
+    }
+
+    #ct-tech .ct2-feature-copy {
+        padding: 13px 12px;
+    }
+
+    #ct-tech .ct2-feature-copy h3 {
+        font-size: 15px;
+    }
+
+    #ct-tech .ct2-feature-copy p {
+        min-height: 78px;
+        font-size: 11px;
+    }
+
+    #ct-tech .ct2-support-panel {
+        grid-template-columns:
+            125px
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        gap: 16px;
+    }
+
+    #ct-tech .ct2-support-image {
+        width: 145px;
+        grid-row: span 2;
+    }
+
+    #ct-tech .ct2-support-panel > .ct2-button {
+        grid-column: 2 / -1;
+        justify-self: start;
+    }
+
+    #ct-tech .ct2-custom-panel {
+        grid-template-columns:
+            minmax(0, .25fr)
+            minmax(0, .35fr)
+            minmax(0, .4fr);
+
+        gap: 18px;
+    }
+
+    #ct-tech .ct2-process {
+        gap: 10px;
+    }
+}
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 1000px) {
+    #ct-tech .ct2-container {
+        width: calc(100% - 40px);
+    }
+
+    #ct-tech .ct2-hero-grid {
+        gap: 10px;
+    }
+
+    #ct-tech .ct2-hero h1 {
+        font-size: 40px;
+    }
+
+    #ct-tech .ct2-actions {
+        gap: 8px;
+    }
+
+    #ct-tech .ct2-actions .ct2-button {
+        padding-inline: 12px;
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-benefits {
+        gap: 8px;
+    }
+
+    #ct-tech .ct2-benefits li {
+        padding-left: 8px;
+    }
+
+    #ct-tech .ct2-system-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    #ct-tech .ct2-system-copy {
+        min-height: 96px;
+    }
+
+    #ct-tech .ct2-system-copy h3 {
+        font-size: 15px;
+    }
+
+    #ct-tech .ct2-system-copy p {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-featured-panel {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 26px 20px 18px;
+    }
+
+    #ct-tech .ct2-featured-heading {
+        padding: 0;
+        text-align: center;
+    }
+
+    #ct-tech .ct2-featured-heading .ct2-eyebrow {
+        justify-content: center;
+    }
+
+    #ct-tech .ct2-featured-heading h2 {
+        font-size: 32px;
+    }
+
+    #ct-tech .ct2-featured-heading h2 br {
+        display: none;
+    }
+
+    #ct-tech .ct2-featured-heading > p:last-child {
+        max-width: none;
+        margin-top: 10px;
+    }
+
+    #ct-tech .ct2-carousel-stage {
+        height: 380px;
+    }
+
+    #ct-tech .ct2-feature-copy h3 {
+        font-size: 17px;
+    }
+
+    #ct-tech .ct2-feature-copy p {
+        min-height: 65px;
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-support-panel {
+        grid-template-columns: 130px minmax(0, 1fr);
+    }
+
+    #ct-tech .ct2-support-image {
+        width: 155px;
+        grid-row: auto;
+    }
+
+    #ct-tech .ct2-support-services {
+        grid-column: 1 / -1;
+    }
+
+    #ct-tech .ct2-support-services strong {
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-support-services span {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-support-panel > .ct2-button {
+        grid-column: 1 / -1;
+        justify-self: end;
+    }
+
+    #ct-tech .ct2-custom-panel {
+        grid-template-columns:
+            minmax(0, .35fr)
+            minmax(0, .65fr);
+    }
+
+    #ct-tech .ct2-process {
+        grid-column: 1 / -1;
+        gap: 24px;
+        margin-top: 12px;
+    }
+
+    #ct-tech .ct2-process strong {
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-process p {
+        font-size: 12px;
+    }
+}
+
+/* =====================================================
+   CELULAR Y TABLET VERTICAL
+   ===================================================== */
+
+@media (max-width: 767px) {
+    #ct-tech .ct2-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding-block: 26px 8px;
+    }
+
+    #ct-tech .ct2-hero-copy {
+        padding: 0;
+    }
+
+    #ct-tech .ct2-hero h1 {
+        max-width: 580px;
+        font-size: clamp(35px, 7vw, 48px);
+    }
+
+    #ct-tech .ct2-description {
+        max-width: 590px;
+        margin-top: 16px;
+        font-size: 16px;
+    }
+
+    #ct-tech .ct2-actions {
+        margin-top: 20px;
+    }
+
+    #ct-tech .ct2-benefits {
+        margin-top: 22px;
+        gap: 16px;
+    }
+
+    #ct-tech .ct2-benefits strong {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-benefits span {
+        font-size: 11px;
+    }
+
+    #ct-tech .ct2-hero-scene {
+        width: min(620px, 100%);
+        margin-inline: auto;
+    }
+
+    #ct-tech .ct2-hero-image {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    #ct-tech .ct2-system-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    #ct-tech .ct2-system-copy {
+        min-height: 110px;
+        padding: 13px 32px 14px 12px;
+    }
+
+    #ct-tech .ct2-system-copy h3 {
+        font-size: 14px;
+    }
+
+    #ct-tech .ct2-system-copy p {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-featured-panel {
+        gap: 20px;
+        padding: 24px 16px 16px;
+        border-radius: 18px;
+    }
+
+    #ct-tech .ct2-featured-heading h2 {
+        font-size: 30px;
+    }
+
+    #ct-tech .ct2-featured-heading > p:last-child {
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-carousel {
+        padding-inline: 34px;
+    }
+
+    #ct-tech .ct2-carousel-stage {
+        height: 445px;
+        perspective: 1000px;
+    }
+
+    #ct-tech .ct2-feature-card {
+        top: 8px;
+        width: 100%;
+        max-width: 360px;
+    }
+
+    #ct-tech .ct2-feature-card.is-center {
+        transform:
+            translateX(-50%)
+            translateZ(0);
+    }
+
+    #ct-tech .ct2-feature-card.is-left,
+    #ct-tech .ct2-feature-card.is-right {
+        z-index: 0;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform:
+            translateX(-50%)
+            rotateY(10deg)
+            scale(.9);
+    }
+
+    #ct-tech .ct2-feature-copy {
+        padding: 16px;
+    }
+
+    #ct-tech .ct2-feature-copy h3 {
+        font-size: 19px;
+    }
+
+    #ct-tech .ct2-feature-copy p {
+        min-height: 0;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    #ct-tech .ct2-feature-link {
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-carousel-arrow {
+        top: 40%;
+        width: 36px;
+        height: 36px;
+    }
+
+    #ct-tech .ct2-support-panel {
+        grid-template-columns: 110px minmax(0, 1fr);
+
+        padding: 20px 18px;
+        border-radius: 18px;
+        gap: 14px;
+    }
+
+    #ct-tech .ct2-support-image {
+        width: 125px;
+    }
+
+    #ct-tech .ct2-support-copy h2 {
+        font-size: 21px;
+    }
+
+    #ct-tech .ct2-support-copy p {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-support-services {
+        gap: 8px;
+    }
+
+    #ct-tech .ct2-support-services li {
+        padding: 12px 10px;
+    }
+
+    #ct-tech .ct2-support-services strong,
+    #ct-tech .ct2-support-services span {
+        font-size: 11px;
+    }
+
+    #ct-tech .ct2-support-panel > .ct2-button {
+        justify-self: stretch;
+        min-height: 46px;
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-custom-panel {
+        gap: 16px;
+        padding: 20px 18px;
+        border-radius: 18px;
+    }
+
+    #ct-tech .ct2-custom-copy h2 {
+        font-size: 22px;
+    }
+
+    #ct-tech .ct2-custom-copy > p:not(.ct2-eyebrow) {
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-custom-copy .ct2-button {
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-process {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px 18px;
+    }
+
+    #ct-tech .ct2-process li::after {
+        display: none;
+    }
+}
+
+/* =====================================================
+   CELULAR COMPACTO
+   ===================================================== */
+
+@media (max-width: 480px) {
+    #ct-tech .ct2-container {
+        width: calc(100% - 32px);
+    }
+
+    #ct-tech .ct2-eyebrow {
+        margin-bottom: 13px;
+        font-size: 10px;
+    }
+
+    #ct-tech .ct2-hero h1 {
+        font-size: clamp(33px, 9vw, 42px);
+    }
+
+    #ct-tech .ct2-description {
+        font-size: 15px;
+    }
+
+    #ct-tech .ct2-actions {
+        flex-direction: column;
+    }
+
+    #ct-tech .ct2-actions .ct2-button {
+        width: 100%;
+        min-height: 46px;
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-benefits {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    #ct-tech .ct2-benefits li {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        column-gap: 8px;
+    }
+
+    #ct-tech .ct2-benefits strong {
+        margin-bottom: 0;
+        font-size: 11px;
+    }
+
+    #ct-tech .ct2-benefits span {
+        font-size: 10px;
+    }
+
+    #ct-tech .ct2-systems {
+        padding-top: 12px;
+    }
+
+    #ct-tech .ct2-system-grid {
+        gap: 10px;
+    }
+
+    #ct-tech .ct2-system-copy {
+        min-height: 132px;
+        padding: 12px 10px 36px;
+    }
+
+    #ct-tech .ct2-system-copy h3 {
+        font-size: 13px;
+    }
+
+    #ct-tech .ct2-system-copy p {
+        font-size: 11px;
+    }
+
+    #ct-tech .ct2-card-arrow {
+        right: 10px;
+        bottom: 9px;
+    }
+
+    #ct-tech .ct2-featured-panel {
+        padding-inline: 10px;
+    }
+
+    #ct-tech .ct2-featured-heading h2 {
+        font-size: 27px;
+    }
+
+    #ct-tech .ct2-featured-heading h2 br {
+        display: initial;
+    }
+
+    #ct-tech .ct2-carousel {
+        padding-inline: 28px;
+    }
+
+    #ct-tech .ct2-carousel-stage {
+        height: 410px;
+    }
+
+    #ct-tech .ct2-feature-copy {
+        padding: 14px 12px;
+    }
+
+    #ct-tech .ct2-feature-copy h3 {
+        font-size: 17px;
+    }
+
+    #ct-tech .ct2-feature-copy p {
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-carousel-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    #ct-tech .ct2-carousel-arrow .ct2-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    #ct-tech .ct2-support-panel {
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: 12px;
+        padding: 18px 14px;
+    }
+
+    #ct-tech .ct2-support-image {
+        width: 105px;
+    }
+
+    #ct-tech .ct2-support .ct2-eyebrow {
+        font-size: 8px;
+        letter-spacing: .05em;
+        gap: 7px;
+    }
+
+    #ct-tech .ct2-support .ct2-eyebrow::before {
+        width: 18px;
+    }
+
+    #ct-tech .ct2-support-copy h2 {
+        font-size: 19px;
+    }
+
+    #ct-tech .ct2-support-services {
+        grid-template-columns: 1fr;
+    }
+
+    #ct-tech .ct2-support-services li {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        align-items: center;
+        gap: 10px;
+    }
+
+    #ct-tech .ct2-support-services strong {
+        margin: 0;
+        font-size: 12px;
+    }
+
+    #ct-tech .ct2-custom-panel {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    #ct-tech .ct2-custom-scene {
+        width: min(300px, 100%);
+        margin-inline: auto;
+    }
+
+    #ct-tech .ct2-custom-copy {
+        text-align: center;
+    }
+
+    #ct-tech .ct2-custom-copy .ct2-eyebrow {
+        justify-content: center;
+    }
+
+    #ct-tech .ct2-custom-copy .ct2-button {
+        width: 100%;
+    }
+
+    #ct-tech .ct2-process {
+        margin-top: 10px;
+    }
+
+    #ct-tech .ct2-custom {
+        padding-bottom: 24px;
+    }
+}
+
+/* =====================================================
+   ACCESIBILIDAD
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #ct-tech *,
+    #ct-tech *::before,
+    #ct-tech *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    #ct-tech .ct2-hero-image,
+    #ct-tech .ct2-custom-scene img,
+    #ct-tech .ct2-system-card {
+        transform: none !important;
+    }
+}
+/* EVITA SELECCIONAR O ARRASTRAR LAS IMÁGENES 3D */
+#ct-tech [data-ct2-tilt],
+#ct-tech [data-ct2-tilt] img {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#ct-tech [data-ct2-tilt] img {
+    -webkit-user-drag: none;
+}
